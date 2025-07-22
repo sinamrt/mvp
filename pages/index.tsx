@@ -35,7 +35,7 @@ export default function Home() {
       } else {
         setError(data.error || 'Something went wrong');
       }
-    } catch (err) {
+    } catch {
       setError('Failed to fetch places');
     } finally {
       setLoading(false);
