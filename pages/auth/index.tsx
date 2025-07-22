@@ -1,5 +1,8 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+'use client';
+
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { signIn, signOut } from "next-auth/react";
 
 interface Place {
   name: string;
@@ -9,7 +12,9 @@ interface Place {
 }
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  const sessionData = useSession();
+  const data = sessionData?.data;
+  const status = sessionData?.status;
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Place[]>([]);
   const [loading, setLoading] = useState(false);
@@ -41,7 +46,7 @@ export default function Home() {
     return <p>Loading session...</p>;
   }
 
-  if (!session) {
+  if (!data) {
     return (
       <div style={{ padding: '2rem' }}>
         <h1>Welcome to Google Places MVP</h1>
@@ -54,7 +59,7 @@ export default function Home() {
   return (
     <div style={{ padding: '2rem' }}>
       <h1>🔍 Google Places Search</h1>
-      <p>Welcome, {session.user?.name} <button onClick={() => signOut()}>Sign out</button></p>
+      <p>Welcome, {data.user?.name} <button onClick={() => signOut()}>Sign out</button></p>
 
       <div style={{ marginBottom: '1rem' }}>
         <input
@@ -77,8 +82,8 @@ export default function Home() {
           {results.map((place) => (
             <li key={place.place_id} style={{ marginBottom: '1rem' }}>
               <strong>{place.name}</strong><br />
-              ⭐ {place.rating || 'N/A'}<br />
-              🏷️ {place.types.join(', ')}
+               {place.rating || 'N/A'}<br />
+               {place.types.join(', ')}
             </li>
           ))}
         </ul>

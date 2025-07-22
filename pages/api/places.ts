@@ -4,6 +4,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY!;
 const BASE_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json';
 
+type Place = {
+  name: string;
+  rating: number;
+  place_id: string;
+  types: string[];
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { query } = req.query;
 
@@ -21,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: data.error_message });
     }
 
-    const results = data.results.map((place: any) => ({
+    const results = data.results.map((place: Place) => ({
       name: place.name,
       rating: place.rating,
       place_id: place.place_id,
