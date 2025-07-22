@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
 
 interface Place {
   name: string;
@@ -8,6 +9,7 @@ interface Place {
 }
 
 export default function Home() {
+  const { data: session, status } = useSession();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Place[]>([]);
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,6 @@ export default function Home() {
 
   const handleSearch = async () => {
     if (!query) return;
-
     setLoading(true);
     setError('');
     setResults([]);
@@ -36,9 +37,24 @@ export default function Home() {
     }
   };
 
+  if (status === 'loading') {
+    return <p>Loading session...</p>;
+  }
+
+  if (!session) {
+    return (
+      <div style={{ padding: '2rem' }}>
+        <h1>Welcome to Google Places MVP</h1>
+        <p>Please sign in to use the search functionality.</p>
+        <button onClick={() => signIn("google")}>Sign in with Google</button>
+      </div>
+    );
+  }
+
   return (
     <div style={{ padding: '2rem' }}>
       <h1>🔍 Google Places Search</h1>
+      <p>Welcome, {session.user?.name} <button onClick={() => signOut()}>Sign out</button></p>
 
       <div style={{ marginBottom: '1rem' }}>
         <input

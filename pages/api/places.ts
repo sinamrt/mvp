@@ -1,5 +1,4 @@
 // pages/api/places.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY!;
@@ -31,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json(results);
   } catch (error) {
+    console.error('Error fetching places:', error);
     return res.status(500).json({ error: 'Failed to fetch from Google Places API' });
   }
 }
