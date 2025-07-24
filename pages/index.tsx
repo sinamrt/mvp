@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 type Place = {
   name: string;
