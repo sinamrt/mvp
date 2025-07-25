@@ -1,3 +1,5 @@
+
+import React, { ReactNode } from "react";
 import AdminOnly from "../components/AdminOnly";
 
 export default function AdminPage() {
