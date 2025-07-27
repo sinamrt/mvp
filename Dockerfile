@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (including dev dependencies for build)
-RUN npm ci
+RUN apk add --no-cache openssl && npm ci
 
 # Copy the rest of the application code
 COPY . .

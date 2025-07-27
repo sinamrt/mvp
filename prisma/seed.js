@@ -1,4 +1,4 @@
-import { PrismaClient, DietType, AllergenType } from '@prisma/client'
+const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
@@ -8,40 +8,40 @@ async function main() {
   // Seed diet exclusions
   const dietExclusions = [
     // Keto exclusions
-    { dietType: DietType.KETO, excludedFood: 'High-carb Grains' },
-    { dietType: DietType.KETO, excludedFood: 'Refined Starches' },
-    { dietType: DietType.KETO, excludedFood: 'Sugar' },
+    { dietType: 'KETO', excludedFood: 'High-carb Grains' },
+    { dietType: 'KETO', excludedFood: 'Refined Starches' },
+    { dietType: 'KETO', excludedFood: 'Sugar' },
     
     // Mediterranean exclusions
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Fruit juice' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Processed Meats' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Refined Starches' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Sugar' },
+    { dietType: 'MEDITERRANEAN', excludedFood: 'Red Meat' },
+    { dietType: 'MEDITERRANEAN', excludedFood: 'Fruit juice' },
+    { dietType: 'MEDITERRANEAN', excludedFood: 'Processed Meats' },
+    { dietType: 'MEDITERRANEAN', excludedFood: 'Refined Starches' },
+    { dietType: 'MEDITERRANEAN', excludedFood: 'Sugar' },
     
     // Paleo exclusions
-    { dietType: DietType.PALEO, excludedFood: 'Dairy' },
-    { dietType: DietType.PALEO, excludedFood: 'Grains' },
-    { dietType: DietType.PALEO, excludedFood: 'Legumes' },
-    { dietType: DietType.PALEO, excludedFood: 'Refined Starches' },
-    { dietType: DietType.PALEO, excludedFood: 'Soy' },
-    { dietType: DietType.PALEO, excludedFood: 'Sugar' },
+    { dietType: 'PALEO', excludedFood: 'Dairy' },
+    { dietType: 'PALEO', excludedFood: 'Grains' },
+    { dietType: 'PALEO', excludedFood: 'Legumes' },
+    { dietType: 'PALEO', excludedFood: 'Refined Starches' },
+    { dietType: 'PALEO', excludedFood: 'Soy' },
+    { dietType: 'PALEO', excludedFood: 'Sugar' },
     
     // Vegan exclusions
-    { dietType: DietType.VEGAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.VEGAN, excludedFood: 'Poultry' },
-    { dietType: DietType.VEGAN, excludedFood: 'Fish' },
-    { dietType: DietType.VEGAN, excludedFood: 'Shellfish' },
-    { dietType: DietType.VEGAN, excludedFood: 'Dairy' },
-    { dietType: DietType.VEGAN, excludedFood: 'Eggs' },
-    { dietType: DietType.VEGAN, excludedFood: 'Mayo' },
-    { dietType: DietType.VEGAN, excludedFood: 'Honey' },
+    { dietType: 'VEGAN', excludedFood: 'Red Meat' },
+    { dietType: 'VEGAN', excludedFood: 'Poultry' },
+    { dietType: 'VEGAN', excludedFood: 'Fish' },
+    { dietType: 'VEGAN', excludedFood: 'Shellfish' },
+    { dietType: 'VEGAN', excludedFood: 'Dairy' },
+    { dietType: 'VEGAN', excludedFood: 'Eggs' },
+    { dietType: 'VEGAN', excludedFood: 'Mayo' },
+    { dietType: 'VEGAN', excludedFood: 'Honey' },
     
     // Vegetarian exclusions
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Poultry' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Fish' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Shellfish' },
+    { dietType: 'VEGETARIAN', excludedFood: 'Red Meat' },
+    { dietType: 'VEGETARIAN', excludedFood: 'Poultry' },
+    { dietType: 'VEGETARIAN', excludedFood: 'Fish' },
+    { dietType: 'VEGETARIAN', excludedFood: 'Shellfish' },
   ]
 
   console.log('📝 Creating diet exclusions...')
@@ -69,7 +69,7 @@ async function main() {
       role: 'ADMIN',
       dietPreferences: {
         create: {
-          dietType: DietType.ANYTHING,
+          dietType: 'ANYTHING',
           measurementUnit: 'US_STANDARD',
           energyUnit: 'CALORIES',
         },

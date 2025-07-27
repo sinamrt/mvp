@@ -52,11 +52,7 @@ services:
     networks:
       - diet-app-network
     restart: unless-stopped
-    command:
-      - npm run db:generate
-      - npm run db:migrate
-      - npm run db:seed
-      - npm run dev
+    command: npm run dev
 
   # Database Management Tool (Optional)
   adminer:
@@ -77,3 +73,4 @@ volumes:
 networks:
   diet-app-network:
     driver: bridge 
+
