@@ -1,9 +1,37 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
-import EmailProvider from "next-auth/providers/email";
+import CredentialsProvider from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+const prisma = new PrismaClient();
+
+// Extend the built-in session types
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      name: string;
+      role: string;
+    };
+  }
+  
+  interface User {
+    id: string;
+    email: string;
+    name: string;
+    role: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: string;
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,32 +43,97 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
-    EmailProvider({
-      server: process.env.EMAIL_SERVER!,
-      from: process.env.EMAIL_FROM!,
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+        name: { label: "Name", type: "text" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        try {
+          // Check if user exists
+          const existingUser = await prisma.user.findUnique({
+            where: { email: credentials.email },
+          });
+
+          if (existingUser) {
+            // User exists, verify password
+            if (existingUser.passwordHash) {
+              const isValidPassword = await bcrypt.compare(
+                credentials.password,
+                existingUser.passwordHash
+              );
+              
+              if (isValidPassword) {
+                return {
+                  id: existingUser.id,
+                  email: existingUser.email,
+                  name: existingUser.name || "",
+                  role: existingUser.role,
+                };
+              }
+            }
+            return null;
+          } else {
+            // New user registration
+            if (!credentials.name) {
+              throw new Error("Name is required for registration");
+            }
+
+            const hashedPassword = await bcrypt.hash(credentials.password, 12);
+            
+            const newUser = await prisma.user.create({
+              data: {
+                email: credentials.email,
+                name: credentials.name,
+                passwordHash: hashedPassword,
+                role: "USER",
+              },
+            });
+
+            return {
+              id: newUser.id,
+              email: newUser.email,
+              name: newUser.name || "",
+              role: newUser.role,
+            };
+          }
+        } catch (error) {
+          console.error("Auth error:", error);
+          return null;
+        }
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async signIn({ user, account, profile }) {
-      // Here you could check if the user is allowed to sign in
+    async signIn() {
       return true;
     },
-    async session({ session, token, user }) {
-      // Attach role to session (default to 'user')
+    async session({ session, token }) {
       if (session.user) {
-        const role = typeof token.role === 'string' ? token.role : 'user';
-        (session.user as typeof session.user & { role?: string }).role = role;
+        session.user.id = token.sub!;
+        session.user.role = token.role;
       }
       return session;
     },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      // Assign a default role to the token if not present
-      if (!token.role) {
-        token.role = 'user';
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
       }
       return token;
     },
+  },
+  pages: {
+    signIn: "/login",
   },
 };
 
