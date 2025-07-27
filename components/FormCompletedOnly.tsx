@@ -12,10 +12,17 @@ function checkFormCompleted(): boolean {
 export default function FormCompletedOnly({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const [formCompleted, setFormCompleted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     setFormCompleted(checkFormCompleted());
   }, []);
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return <p>Loading...</p>;
+  }
 
   if (status === "loading") return <p>Loading...</p>;
   if (!session) {

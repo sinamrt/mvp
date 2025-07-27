@@ -1,8 +1,18 @@
 import { useSession, signIn } from "next-auth/react";
-import React, { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export default function AdminOnly({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return <p>Loading...</p>;
+  }
 
   if (status === "loading") return <p>Loading...</p>;
   if (!session) {
@@ -15,7 +25,7 @@ export default function AdminOnly({ children }: { children: ReactNode }) {
   }
 
   const userRole = (session.user as typeof session.user & { role?: string }).role;
-  if (userRole !== "admin") {
+  if (userRole !== "ADMIN") {
     return <p>Access denied. Admins only.</p>;
   }
 

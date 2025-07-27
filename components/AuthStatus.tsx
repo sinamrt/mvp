@@ -1,6 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
 
-export default function AuthStatus() {
+function AuthStatusClient() {
   const { data: session, status } = useSession();
 
   if (status === "loading") return <p>Loading...</p>;
@@ -21,4 +22,19 @@ export default function AuthStatus() {
       </button>
     </div>
   );
+}
+
+export default function AuthStatus() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return <p>Loading...</p>;
+  }
+
+  return <AuthStatusClient />;
 } 
