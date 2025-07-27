@@ -101,10 +101,15 @@
   align-items: center;
 }
 
-.hero-image img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
+.hero-image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.hero-image img,
+.hero-image .next-image {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
 }

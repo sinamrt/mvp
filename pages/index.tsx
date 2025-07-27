@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AuthStatus from "../components/AuthStatus";
 import React from 'react';
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LandingPage() {
   const [isClient, setIsClient] = useState(false);
@@ -82,9 +83,12 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="hero-image">
-                <img
-                  src="/meal-bowl.jpg"
+                
+                <Image
+                  src="/images/z212.jpg"
                   alt="Healthy meal bowl"
+                  width={400}
+                  height={300}
                 />
               </div>
             </div>
