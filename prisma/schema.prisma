@@ -1,0 +1,252 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User accounts and authentication
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  passwordHash  String?
+  role          UserRole @default(USER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Personal information
+  sex           Sex?
+  heightCm      Int?
+  weightKg      Float?
+  age           Int?
+  bodyFat       BodyFat?
+  activityLevel ActivityLevel?
+
+  // Relationships
+  dietPreferences DietPreference?
+  foodExclusions  FoodExclusion[]
+  nutritionGoals  NutritionGoal?
+  macroRanges     MacroRange?
+  mealPreferences MealPreference?
+  nutritionLimits NutritionLimit?
+  userProgress    UserProgress[]
+  dietForms       DietForm[]
+
+  @@map("users")
+}
+
+// Diet preferences and settings
+model DietPreference {
+  id              String      @id @default(cuid())
+  userId          String      @unique
+  dietType        DietType
+  measurementUnit MeasurementUnit @default(US_STANDARD)
+  energyUnit      EnergyUnit  @default(CALORIES)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  // Relationships
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("diet_preferences")
+}
+
+// Food allergies and avoidances
+model FoodExclusion {
+  id           String       @id @default(cuid())
+  userId       String
+  allergenType AllergenType
+  customFood   String?
+  createdAt    DateTime     @default(now())
+
+  // Relationships
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("food_exclusions")
+}
+
+// Diet-specific exclusions
+model DietExclusion {
+  id           String   @id @default(cuid())
+  dietType     DietType
+  excludedFood String
+  createdAt    DateTime @default(now())
+
+  @@map("diet_exclusions")
+}
+
+// Nutrition and weight goals
+model NutritionGoal {
+  id           String     @id @default(cuid())
+  userId       String     @unique
+  goalType     GoalType
+  goalMode     GoalMode   @default(GENERAL)
+  targetWeight Float?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relationships
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("nutrition_goals")
+}
+
+// Macro ranges for nutrition
+model MacroRange {
+  id         String @id @default(cuid())
+  userId     String @unique
+  carbsMin   Int
+  carbsMax   Int
+  fatsMin    Int
+  fatsMax    Int
+  proteinMin Int
+  proteinMax Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relationships
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("macro_ranges")
+}
+
+// Meal preferences and patterns
+model MealPreference {
+  id            String @id @default(cuid())
+  userId        String @unique
+  breakfast     Boolean @default(true)
+  lunch         Boolean @default(true)
+  dinner        Boolean @default(true)
+  snack         Boolean @default(true)
+  favoriteDishes String[] // JSON array of favorite dishes
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relationships
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("meal_preferences")
+}
+
+// Nutrition limits and constraints
+model NutritionLimit {
+  id              String @id @default(cuid())
+  userId          String @unique
+  minFiber        Int    @default(25)
+  limitSodium     Boolean @default(false)
+  limitCholesterol Boolean @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relationships
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("nutrition_limits")
+}
+
+// User progress tracking
+model UserProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime
+  weightKg  Float?
+  bodyFat   BodyFat?
+  createdAt DateTime @default(now())
+
+  // Relationships
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_progress")
+}
+
+// Diet form submissions
+model DietForm {
+  id         String   @id @default(cuid())
+  userId     String
+  dietType   DietType
+  answers    String[] // JSON array of answers
+  completed  Boolean  @default(false)
+  completedAt DateTime?
+  createdAt  DateTime @default(now())
+
+  // Relationships
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("diet_forms")
+}
+
+// Enums
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum Sex {
+  MALE
+  FEMALE
+  NON_BINARY
+}
+
+enum BodyFat {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ActivityLevel {
+  DESK_JOB
+  LIGHTLY_ACTIVE
+  ACTIVE
+  VERY_ATHLETIC
+  EXTREMELY_ATHLETIC
+}
+
+enum DietType {
+  ANYTHING
+  KETO
+  MEDITERRANEAN
+  PALEO
+  VEGAN
+  VEGETARIAN
+  OMNIVORE
+  FOUR_FED
+}
+
+enum MeasurementUnit {
+  US_STANDARD
+  METRIC
+}
+
+enum EnergyUnit {
+  CALORIES
+  KILOJOULES
+}
+
+enum AllergenType {
+  DAIRY
+  EGGS
+  FISH
+  GLUTEN
+  TREE_NUTS
+  PEANUTS
+  SESAME
+  SHELLFISH
+  SOY
+}
+
+enum GoalType {
+  LOSE_FAT
+  MAINTAIN
+  BUILD_MUSCLE
+}
+
+enum GoalMode {
+  GENERAL
+  EXACT
+} 
