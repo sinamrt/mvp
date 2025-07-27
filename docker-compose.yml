@@ -36,18 +36,12 @@ services:
     container_name: diet-app-nextjs
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://diet_user:diet_password@postgres:5432/diet_management
       - REDIS_URL=redis://redis:6379
-      - NEXTAUTH_URL=http://localhost:3000
-      - NEXTAUTH_SECRET=your-secret-key-here
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
-      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
-      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
-      - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
     volumes:
       - .:/app
       - /app/node_modules
@@ -58,7 +52,11 @@ services:
     networks:
       - diet-app-network
     restart: unless-stopped
-    command: npm run dev
+    command:
+      - npm run db:generate
+      - npm run db:migrate
+      - npm run db:seed
+      - npm run dev
 
   # Database Management Tool (Optional)
   adminer:
