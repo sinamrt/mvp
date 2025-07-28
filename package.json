@@ -21,12 +21,15 @@
     "db:reset": "prisma migrate reset"
   },
   "dependencies": {
-    "@prisma/client": "^5.10.0",
+    "@prisma/client": "^5.22.0",
     "@react-google-maps/api": "^2.20.7",
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.1",
     "next": "15.4.1",
     "next-auth": "^4.24.11",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.16.3",
     "playwright": "^1.54.1",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -50,7 +53,7 @@
     "eslint-config-next": "15.4.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prisma": "^5.10.0",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
