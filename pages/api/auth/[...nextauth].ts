@@ -30,6 +30,7 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     role: string;
+    sub?: string;
   }
 }
 
@@ -119,15 +120,16 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.sub!;
-        session.user.role = token.role;
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
+        session.user.role = token.role || "USER";
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;
+        token.sub = user.id;
       }
       return token;
     },
