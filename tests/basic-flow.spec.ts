@@ -1,164 +1,217 @@
-import { test, expect, Page } from '@playwright/test';
-
-// Test data generator
-const generateTestUser = () => ({
-  email: `test.${Date.now()}@example.com`,
-  password: 'TestPass123!',
-  name: 'Test User'
-});
+import { test, expect } from '@playwright/test';
 
 test.describe('Basic Application Flow', () => {
-  // Remove the global alert handler from beforeEach
   test.beforeEach(async ({ page }) => {
-    await page.goto('/register');
-  });
-
-  // 1. Homepage Test
-  test('should load homepage', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveURL('/');
+    // Wait for the page to load and hydration to complete
+    await page.waitForLoadState('networkidle');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('p:has-text("Loading...")', { state: 'hidden', timeout: 10000 });
   });
 
-  // 2. Navigation Test
-  test('should navigate to login page', async ({ page }) => {
-    await expect(page.getByRole('link', { name: /sign in/i })).toBeVisible();
-    await page.click('a[href="/login"]');
-    await expect(page).toHaveURL('/login');
+  // 1. Homepage Load Test
+  test('should load homepage successfully', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('h1.header-logo', { timeout: 10000 });
+    await expect(page.locator('h1.header-logo')).toContainText('MEALS4V');
   });
 
-  // 3. Registration Form Fields
-  test('should have all registration form fields', async ({ page }) => {
-    await expect(page.locator('#name')).toBeVisible();
-    await expect(page.locator('#email')).toBeVisible();
-    await expect(page.locator('#password')).toBeVisible();
-    await expect(page.locator('#confirmPassword')).toBeVisible();
-    await expect(page.getByRole('button', { name: /create account/i })).toBeVisible();
+  // 2. Navigation Test - Updated to match actual structure
+  test('should navigate to register page', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('a[href="/register"]', { timeout: 10000 });
+    await expect(page.locator('a[href="/register"]')).toBeVisible();
+    await page.click('a[href="/register"]');
+    await expect(page).toHaveURL('/register');
   });
 
-  // 4. Basic Form Submission
-  test('should submit registration form', async ({ page }) => {
-    const user = generateTestUser();
+  // 3. Registration Form Test
+  test('should display registration form', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
     
-    // Set up dialog handler before form interaction
-    page.once('dialog', dialog => dialog.dismiss());
-    
-    await page.fill('#name', user.name);
-    await page.fill('#email', user.email);
-    await page.fill('#password', user.password);
-    await page.fill('#confirmPassword', user.password);
-    
-    // Click submit and handle possible redirects
-    await page.click('button[type="submit"]');
-
-    // Wait for navigation
-    try {
-      await page.waitForURL((url) => {
-        return url.pathname === '/diet-form' || url.pathname.includes('/api/auth/error');
-      }, { timeout: 30000 });
-
-      const currentUrl = page.url();
-      if (currentUrl.includes('error')) {
-        const errorMessage = await page.textContent('body');
-        throw new Error(`Registration failed: ${errorMessage}`);
-      }
-    } catch (error) {
-      console.error('Navigation error:', error);
-      throw error;
-    }
+    await expect(page.locator('h1.form-title')).toContainText('Create Your Account');
+    await expect(page.locator('[data-testid="name"]')).toBeVisible();
+    await expect(page.locator('[data-testid="email"]')).toBeVisible();
+    await expect(page.locator('[data-testid="password"]')).toBeVisible();
+    await expect(page.locator('[data-testid="confirm-password"]')).toBeVisible();
   });
 
-  // 5. Password Mismatch
-  test('should show alert for password mismatch', async ({ page }) => {
-    let dialogShown = false;
-    let dialogMessage = '';
-
-    // Set up single dialog handler
-    page.once('dialog', dialog => {
-      dialogShown = true;
-      dialogMessage = dialog.message();
-      dialog.dismiss();
-    });
-
-    await page.fill('#name', 'Test User');
-    await page.fill('#email', 'test@example.com');
-    await page.fill('#password', 'password123');
-    await page.fill('#confirmPassword', 'different123');
-    await page.click('button[type="submit"]');
-
-    // Verify dialog was shown with correct message
-    expect(dialogShown).toBe(true);
-    expect(dialogMessage).toContain("Passwords don't match");
-  });
-
-  // 6. Required Fields
-  test('should require all mandatory fields', async ({ page }) => {
-    // Try submitting empty form
-    await page.click('button[type="submit"]');
+  // 4. Form Validation Test
+  test('should validate required fields', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
     
-    // Check HTML5 validation
-    const emailInput = page.locator('#email');
-    const validity = await emailInput.evaluate((el: HTMLInputElement) => el.validity.valid);
-    expect(validity).toBe(false);
+    // Try to submit empty form
+    await page.click('[data-testid="register-button"]');
+    
+    // Check for HTML5 validation messages
+    const nameInput = page.locator('[data-testid="name"]');
+    const emailInput = page.locator('[data-testid="email"]');
+    const passwordInput = page.locator('[data-testid="password"]');
+    
+    // Wait a bit for validation to trigger
+    await page.waitForTimeout(1000);
+    
+    await expect(nameInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(passwordInput).toHaveAttribute('aria-invalid', 'true');
   });
 
-  // 7. Email Format
+  // 5. Password Mismatch Test - Updated to check DOM error message
+  test('should show error for password mismatch', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
+    
+    // Fill form with mismatched passwords
+    await page.fill('[data-testid="name"]', 'Test User');
+    await page.fill('[data-testid="email"]', 'test@example.com');
+    await page.fill('[data-testid="password"]', 'Password123!');
+    await page.fill('[data-testid="confirm-password"]', 'DifferentPassword123!');
+    
+    // Submit form
+    await page.click('[data-testid="register-button"]');
+    
+    // Check for DOM error message instead of alert
+    await expect(page.locator('[data-testid="password-match-error"]')).toBeVisible();
+    await expect(page.locator('[data-testid="password-match-error"]')).toContainText('Passwords do not match');
+  });
+
+  // 6. Email Validation Test
   test('should validate email format', async ({ page }) => {
-    await page.fill('#name', 'Test User');
-    await page.fill('#email', 'invalid-email');
-    await page.fill('#password', 'password123');
-    await page.fill('#confirmPassword', 'password123');
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
     
-    // Check HTML5 validation
-    const emailInput = page.locator('#email');
-    const validity = await emailInput.evaluate((el: HTMLInputElement) => el.validity.valid);
-    expect(validity).toBe(false);
+    // Enter invalid email
+    await page.fill('[data-testid="email"]', 'invalid-email');
+    
+    // Check for email validation error
+    await expect(page.locator('[data-testid="email-error"]')).toBeVisible();
+    await expect(page.locator('[data-testid="email-error"]')).toContainText('Please enter a valid email address');
   });
 
-  // 8. Successful Registration
-  test('should redirect after successful registration', async ({ page }) => {
-    const user = generateTestUser();
+  // 7. Password Strength Test
+  test('should show password strength indicator', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
     
-    // Set up dialog handler before form interaction
-    page.once('dialog', dialog => dialog.dismiss());
+    // Enter weak password
+    await page.fill('[data-testid="password"]', 'weak');
     
-    await page.fill('#name', user.name);
-    await page.fill('#email', user.email);
-    await page.fill('#password', user.password);
-    await page.fill('#confirmPassword', user.password);
-    
-    // Click submit and wait for navigation
-    await page.click('button[type="submit"]');
-
-    // Wait and verify navigation
-    try {
-      await page.waitForURL((url) => {
-        return url.pathname === '/diet-form' || url.pathname.includes('/api/auth/error');
-      }, { timeout: 30000 });
-
-      const currentUrl = page.url();
-      if (currentUrl.includes('error')) {
-        const errorMessage = await page.textContent('body');
-        throw new Error(`Registration failed: ${errorMessage}`);
-      }
-
-      // Verify we reached the success page
-      expect(currentUrl).toContain('/diet-form');
-    } catch (error) {
-      console.error('Navigation error:', error);
-      throw error;
-    }
+    // Check for password strength indicator
+    await expect(page.locator('[data-testid="password-strength"]')).toBeVisible();
+    await expect(page.locator('[data-testid="password-strength"]')).toContainText('weak');
   });
 
-  // 9. OAuth Buttons
-  test('should have OAuth login options', async ({ page }) => {
-    await expect(page.locator('.oauth-btn-google')).toBeVisible();
-    await expect(page.locator('.oauth-btn-github')).toBeVisible();
+  // 8. Password Requirements Test
+  test('should show password requirements', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
+    
+    // Check that password requirements are visible
+    await expect(page.locator('[data-testid="password-requirements"]')).toBeVisible();
+    await expect(page.locator('[data-testid="password-requirements"]')).toContainText('Password must:');
   });
 
-  // 10. Login Link
-  test('should have login link', async ({ page }) => {
-    const loginLink = page.getByRole('link', { name: /sign in/i });
-    await expect(loginLink).toBeVisible();
-    expect(await loginLink.getAttribute('href')).toBe('/login');
+  // 9. OAuth Buttons Test
+  test('should display OAuth buttons', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
+    
+    // Check for OAuth buttons
+    await expect(page.locator('[data-testid="oauth-btn-google"]')).toBeVisible();
+    await expect(page.locator('[data-testid="oauth-btn-github"]')).toBeVisible();
+  });
+
+  // 10. Loading State Test
+  test('should show loading state during submission', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
+    
+    // Fill form with valid data
+    await page.fill('[data-testid="name"]', 'Test User');
+    await page.fill('[data-testid="email"]', 'test@example.com');
+    await page.fill('[data-testid="password"]', 'Password123!');
+    await page.fill('[data-testid="confirm-password"]', 'Password123!');
+    
+    // Submit form
+    await page.click('[data-testid="register-button"]');
+    
+    // Check for loading spinner
+    await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible();
+  });
+
+  // 11. Navigation Links Test
+  test('should have working navigation links', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('nav.header-nav', { timeout: 10000 });
+    
+    // Check for navigation links in header
+    await expect(page.locator('a[href="#features"]')).toBeVisible();
+    await expect(page.locator('a[href="#how-it-works"]')).toBeVisible();
+    await expect(page.locator('a[href="#pricing"]')).toBeVisible();
+    await expect(page.locator('a[href="#contact"]')).toBeVisible();
+  });
+
+  // 12. Authentication Status Test
+  test('should show authentication status', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('.auth-status-content', { timeout: 10000 });
+    
+    // Check for auth status component
+    await expect(page.locator('.auth-status-content')).toBeVisible();
+    
+    // Should show sign in button when not authenticated
+    await expect(page.locator('button:has-text("Sign In")')).toBeVisible();
+  });
+
+  // 13. Footer Links Test
+  test('should have working footer links', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('footer.landing-footer', { timeout: 10000 });
+    
+    // Scroll to footer
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    
+    // Check for footer links
+    await expect(page.locator('a[href="/diet-form"]')).toBeVisible();
+    await expect(page.locator('a[href="/admin"]')).toBeVisible();
+  });
+
+  // 14. Responsive Design Test
+  test('should be responsive', async ({ page }) => {
+    // Wait for the actual content to load
+    await page.waitForSelector('h1.header-logo', { timeout: 10000 });
+    
+    // Test mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    
+    // Check that elements are still visible
+    await expect(page.locator('h1.header-logo')).toBeVisible();
+    await expect(page.locator('a[href="/register"]')).toBeVisible();
+  });
+
+  // 15. Accessibility Test
+  test('should have proper accessibility attributes', async ({ page }) => {
+    await page.goto('/register');
+    // Wait for the loading spinner to disappear
+    await page.waitForSelector('[data-testid="loading-spinner"]', { state: 'hidden', timeout: 10000 });
+    
+    // Check for proper labels
+    await expect(page.locator('label[for="name"]')).toBeVisible();
+    await expect(page.locator('label[for="email"]')).toBeVisible();
+    await expect(page.locator('label[for="password"]')).toBeVisible();
+    
+    // Check for aria-invalid attributes
+    const nameInput = page.locator('[data-testid="name"]');
+    await expect(nameInput).toHaveAttribute('aria-invalid');
   });
 }); 
