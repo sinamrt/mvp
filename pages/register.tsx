@@ -11,6 +11,10 @@ export default function Register() {
     confirmPassword: "",
   });
   const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [networkError, setNetworkError] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,13 +27,20 @@ export default function Register() {
       ...prev,
       [name]: value
     }));
+    // Clear errors on input change
+    setErrorMessage("");
+    setNetworkError(false);
   };
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+    setNetworkError(false);
     
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      setErrorMessage("Passwords don't match!");
+      setIsLoading(false);
       return;
     }
 
@@ -42,13 +53,20 @@ export default function Register() {
       });
 
       if (result?.error) {
-        alert("Registration failed: " + result.error);
+        setErrorMessage(result.error);
+        setIsLoading(false);
       } else {
-        router.push("/diet-form");
+        // Show success message briefly before redirect
+        const successMessage = document.querySelector('[data-testid="success-message"]') as HTMLElement;
+        if (successMessage) {
+          successMessage.style.display = 'block';
+        }
+        setTimeout(() => router.push("/diet-form"), 500);
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Registration failed. Please try again.");
+      setNetworkError(true);
+      setIsLoading(false);
     }
   };
 
@@ -57,8 +75,22 @@ export default function Register() {
   };
 
   if (!isClient) {
-    return <div className="page-loading"><div className="spinner"></div></div>;
+    return <div className="page-loading" data-testid="loading-spinner"><div className="spinner"></div></div>;
   }
+
+  const getPasswordStrength = (password: string): string => {
+    if (password.length < 8) return 'weak';
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    
+    const strength = [hasUpperCase, hasLowerCase, hasNumbers, hasSpecialChar].filter(Boolean).length;
+    return strength <= 2 ? 'weak' : strength === 3 ? 'medium' : 'strong';
+  };
+
+  // Helper function to convert boolean to "true"/"false" string
+  const toAriaInvalid = (condition: boolean): "true" | "false" => condition ? "true" : "false";
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -70,7 +102,7 @@ export default function Register() {
           </p>
         </div>
 
-        <form onSubmit={handleEmailSignIn}>
+        <form onSubmit={handleEmailSignIn} noValidate>
           <div className="form-group">
             <label htmlFor="name" className="form-label required">Full Name</label>
             <input
@@ -81,6 +113,9 @@ export default function Register() {
               onChange={handleInputChange}
               className="form-input"
               required
+              maxLength={100}
+              data-testid="name"
+              aria-invalid={toAriaInvalid(!formData.name)}
             />
           </div>
 
@@ -94,21 +129,55 @@ export default function Register() {
               onChange={handleInputChange}
               className="form-input"
               required
+              data-testid="email"
+              aria-invalid={toAriaInvalid(!!formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))}
             />
+            {formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && (
+              <span className="error-message" data-testid="email-error" role="alert">
+                Please enter a valid email address
+              </span>
+            )}
           </div>
 
           <div className="form-group">
             <label htmlFor="password" className="form-label required">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="form-input"
-              required
-              minLength={8}
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+                minLength={8}
+                data-testid="password"
+                aria-invalid={toAriaInvalid(formData.password.length < 8)}
+              />
+              <button
+                type="button"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+                className="password-toggle"
+                data-testid="toggle-password"
+                aria-label={passwordVisible ? "Hide password" : "Show password"}
+              >
+                {passwordVisible ? "Hide" : "Show"}
+              </button>
+            </div>
+            {formData.password && (
+              <div data-testid="password-strength" className={`password-strength ${getPasswordStrength(formData.password)}`}>
+                Password Strength: {getPasswordStrength(formData.password)}
+              </div>
+            )}
+            <div data-testid="password-requirements" className="password-requirements">
+              Password must:
+              <ul role="list">
+                <li className={formData.password.length >= 8 ? 'met' : ''}>Be at least 8 characters</li>
+                <li className={/[A-Z]/.test(formData.password) ? 'met' : ''}>Include uppercase letter</li>
+                <li className={/\d/.test(formData.password) ? 'met' : ''}>Include number</li>
+                <li className={/[!@#$%^&*(),.?":{}|<>]/.test(formData.password) ? 'met' : ''}>Include special character</li>
+              </ul>
+            </div>
           </div>
 
           <div className="form-group">
@@ -122,12 +191,43 @@ export default function Register() {
               className="form-input"
               required
               minLength={8}
+              data-testid="confirm-password"
+              aria-invalid={toAriaInvalid(!!formData.confirmPassword && formData.password !== formData.confirmPassword)}
             />
+            {formData.confirmPassword && formData.password !== formData.confirmPassword && (
+              <span className="error-message" data-testid="password-match-error" role="alert">
+                Passwords do not match
+              </span>
+            )}
           </div>
 
-          <button type="submit" className="form-btn form-btn-primary">
-            Create Account
+          <button 
+            type="submit" 
+            className="form-btn form-btn-primary"
+            disabled={isLoading}
+            data-testid="register-button"
+          >
+            {isLoading ? (
+              <span data-testid="loading-spinner" className="spinner-small"></span>
+            ) : (
+              'Create Account'
+            )}
           </button>
+
+          {/* Error Messages */}
+          {errorMessage && (
+            <div data-testid="error-message" className="error-message" role="alert">
+              {errorMessage}
+            </div>
+          )}
+          {networkError && (
+            <div data-testid="network-error" className="error-message" role="alert">
+              Network error. Please check your connection.
+            </div>
+          )}
+          <div data-testid="success-message" className="success-message" style={{ display: 'none' }} role="alert">
+            Registration successful! Redirecting...
+          </div>
         </form>
 
         <div className="oauth-section">
@@ -138,6 +238,7 @@ export default function Register() {
           <button
             onClick={() => handleOAuthSignIn("google")}
             className="oauth-btn oauth-btn-google"
+            type="button"
           >
             <svg className="oauth-icon" viewBox="0 0 24 24">
               <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -151,16 +252,10 @@ export default function Register() {
           <button
             onClick={() => handleOAuthSignIn("github")}
             className="oauth-btn oauth-btn-github"
+            type="button"
           >
-            <svg className="oauth-icon" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
             Continue with GitHub
           </button>
-        </div>
-
-        <div className="auth-link">
-          Already have an account? <Link href="/login">Sign in here</Link>
         </div>
       </div>
     </div>

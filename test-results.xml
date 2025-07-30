@@ -1,51 +1,262 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="11.527642999999996">
-<testsuite name="e2e/registration.spec.ts" timestamp="2025-07-30T09:12:23.487Z" hostname="chromium" tests="1" failures="1" skipped="0" time="10.634" errors="0">
-<testcase name="User Registration › should register with minimum required fields" classname="e2e/registration.spec.ts" time="10.634">
-<failure message="registration.spec.ts:45:7 should register with minimum required fields" type="FAILURE">
-<![CDATA[  [chromium] › e2e/registration.spec.ts:45:7 › User Registration › should register with minimum required fields 
+<testsuites id="" name="" tests="8" failures="6" skipped="0" errors="0" time="26.900439">
+<testsuite name="password-submission-response.spec.ts" timestamp="2025-07-30T10:49:01.325Z" hostname="chromium" tests="8" failures="6" skipped="0" time="62.578" errors="0">
+<testcase name="Password, Submission, and Response Tests › Password Validation › should validate password requirements" classname="password-submission-response.spec.ts" time="2.803">
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Form Submission › should reset form after successful submission" classname="password-submission-response.spec.ts" time="6.059">
+<failure message="password-submission-response.spec.ts:46:9 should reset form after successful submission" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:46:9 › Password, Submission, and Response Tests › Form Submission › should reset form after successful submission 
 
-    TimeoutError: page.fill: Timeout 10000ms exceeded.
+    Error: Timed out 2000ms waiting for expect(locator).toBeVisible()
+
+    Locator: locator('[data-testid="success-message"]')
+    Expected: visible
+    Received: hidden
     Call log:
-      - waiting for locator('[data-testid="email"]')
+      - Expect "toBeVisible" with timeout 2000ms
+      - waiting for locator('[data-testid="success-message"]')
+        5 × locator resolved to <div role="alert" class="success-message" data-testid="success-message">Registration successful! Redirecting...</div>
+          - unexpected value "hidden"
+        - waiting for" http://localhost:3000/api/auth/error" navigation to finish...
 
 
-      52 |
-      53 |     // Fill only required fields
-    > 54 |     await page.fill('[data-testid="email"]', minimalUser.email);
-         |                ^
-      55 |     await page.fill('[data-testid="password"]', minimalUser.password);
-      56 |     await page.fill('[data-testid="confirm-password"]', minimalUser.confirmPassword);
-      57 |     await page.check('[data-testid="terms-checkbox"]');
-        at /Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts:54:16
+      57 |
+      58 |       // Wait for success message
+    > 59 |       await expect(page.locator('[data-testid="success-message"]')).toBeVisible({ timeout: 2000 });
+         |                                                                     ^
+      60 |
+      61 |       // Wait for navigation
+      62 |       await page.waitForURL('/diet-form');
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:59:69
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/test-failed-1.png
+    ../test-results/password-submission-respon-7b707-after-successful-submission-chromium/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/trace.zip
-    Usage:
-
-        npx playwright show-trace ../test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/trace.zip
-
+    ../test-results/password-submission-respon-7b707-after-successful-submission-chromium/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/test-failed-1.png]]
+[[ATTACHMENT|test-results/password-submission-respon-7b707-after-successful-submission-chromium/test-failed-1.png]]
 
-[[ATTACHMENT|test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/video.webm]]
+[[ATTACHMENT|test-results/password-submission-respon-7b707-after-successful-submission-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Response Handling › should handle server errors" classname="password-submission-response.spec.ts" time="17.579">
+<failure message="password-submission-response.spec.ts:74:9 should handle server errors" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:74:9 › Password, Submission, and Response Tests › Response Handling › should handle server errors 
 
-[[ATTACHMENT|test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/error-context.md]]
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/auth/error?error=EmailExists" until "load"
+      navigated to "http://localhost:3000/api/auth/error"
+      navigated to "http://localhost:3000/api/auth/error"
+    ============================================================
 
-[[ATTACHMENT|test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/trace.zip]]
+      83 |       // Submit form and wait for error page
+      84 |       await Promise.all([
+    > 85 |         page.waitForURL('**/auth/error?error=EmailExists'),
+         |              ^
+      86 |         page.click('button[type="submit"]')
+      87 |       ]);
+      88 |
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:85:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/password-submission-respon-40cca-should-handle-server-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Response Handling › should handle network errors" classname="password-submission-response.spec.ts" time="3.455">
+<failure message="password-submission-response.spec.ts:94:9 should handle network errors" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:94:9 › Password, Submission, and Response Tests › Response Handling › should handle network errors 
+
+    Error: page.waitForURL: net::ERR_INTERNET_DISCONNECTED
+    =========================== logs ===========================
+    waiting for navigation to "**/auth/error?error=NetworkError" until "load"
+    ============================================================
+
+      104 |       // Submit form and wait for error page
+      105 |       await Promise.all([
+    > 106 |         page.waitForURL('**/auth/error?error=NetworkError'),
+          |              ^
+      107 |         page.click('button[type="submit"]')
+      108 |       ]);
+      109 |
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:106:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/password-submission-respon-14766-hould-handle-network-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Edge Cases › should handle very long inputs" classname="password-submission-response.spec.ts" time="1.406">
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Error States › should handle server validation errors" classname="password-submission-response.spec.ts" time="16.879">
+<failure message="password-submission-response.spec.ts:135:9 should handle server validation errors" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:135:9 › Password, Submission, and Response Tests › Error States › should handle server validation errors 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/auth/error?error=WeakPassword" until "load"
+      navigated to "http://localhost:3000/api/auth/error"
+      navigated to "http://localhost:3000/api/auth/error"
+    ============================================================
+
+      142 |       // Submit form and wait for error page
+      143 |       await Promise.all([
+    > 144 |         page.waitForURL('**/auth/error?error=WeakPassword'),
+          |              ^
+      145 |         page.click('button[type="submit"]')
+      146 |       ]);
+      147 |
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:144:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/password-submission-respon-ed35b-le-server-validation-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Accessibility › should handle keyboard navigation" classname="password-submission-response.spec.ts" time="7.873">
+<failure message="password-submission-response.spec.ts:156:9 should handle keyboard navigation" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:156:9 › Password, Submission, and Response Tests › Accessibility › should handle keyboard navigation 
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeFocused()
+
+    Locator: locator('#confirmPassword')
+    Expected: focused
+    Received: inactive
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#confirmPassword')
+        9 × locator resolved to <input value="" required="" minlength="8" type="password" class="form-input" id="confirmPassword" aria-invalid="false" name="confirmPassword" data-testid="confirm-password"/>
+          - unexpected value "inactive"
+
+
+      166 |       
+      167 |       await page.keyboard.press('Tab');
+    > 168 |       await expect(page.locator('#confirmPassword')).toBeFocused();
+          |                                                      ^
+      169 |     });
+      170 |
+      171 |     test('should announce form errors to screen readers', async ({ page }) => {
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:168:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/password-submission-respon-42604--handle-keyboard-navigation-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Password, Submission, and Response Tests › Accessibility › should announce form errors to screen readers" classname="password-submission-response.spec.ts" time="6.524">
+<failure message="password-submission-response.spec.ts:171:9 should announce form errors to screen readers" type="FAILURE">
+<![CDATA[  [chromium] › password-submission-response.spec.ts:171:9 › Password, Submission, and Response Tests › Accessibility › should announce form errors to screen readers 
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveAttribute(expected)
+
+    Locator: locator('#email')
+    Expected string: "true"
+    Received string: "false"
+    Call log:
+      - Expect "toHaveAttribute" with timeout 5000ms
+      - waiting for locator('#email')
+        9 × locator resolved to <input value="" id="email" required="" type="email" name="email" class="form-input" data-testid="email" aria-invalid="false"/>
+          - unexpected value "false"
+
+
+      177 |       
+      178 |       // Check for ARIA attributes
+    > 179 |       await expect(page.locator('#email')).toHaveAttribute('aria-invalid', 'true');
+          |                                            ^
+      180 |       await expect(page.locator('#password')).toHaveAttribute('aria-invalid', 'true');
+      181 |     });
+      182 |   });
+        at /Users/sina/Desktop/wollie_software/MVP/tests/password-submission-response.spec.ts:179:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/password-submission-respon-686f7-rm-errors-to-screen-readers-chromium/error-context.md]]
 ]]>
 </system-out>
 </testcase>

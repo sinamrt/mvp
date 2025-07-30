@@ -2,29 +2,28 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: diet-app-postgres
+    container_name: diet-app-postgres-prod
     environment:
       POSTGRES_DB: diet_management
       POSTGRES_USER: diet_user
-      POSTGRES_PASSWORD: diet_password
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - diet-app-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U diet_user -d diet_management"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Redis for caching and sessions
   redis:
     image: redis:7-alpine
-    container_name: diet-app-redis
+    container_name: diet-app-redis-prod
     ports:
       - "6379:6379"
     volumes:
@@ -34,46 +33,28 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Next.js Application
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: diet-app-nextjs
+      dockerfile: Dockerfile.prod
+    container_name: diet-app-nextjs-prod
     ports:
       - "3000:3000"
     env_file:
-      - .env
+      - .env.production
     environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgresql://diet_user:diet_password@postgres:5432/diet_management
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://diet_user:${POSTGRES_PASSWORD}@postgres:5432/diet_management
       - REDIS_URL=redis://redis:6379
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
     depends_on:
       postgres:
         condition: service_healthy
       redis:
-        condition: service_healthy
-    networks:
-      - diet-app-network
-    restart: unless-stopped
-    command: ["sh", "./init.sh", "npm", "run", "dev"]
-
-  # Database Management Tool (Optional)
-  adminer:
-    image: adminer:latest
-    container_name: diet-app-adminer
-    ports:
-      - "8080:8080"
-    depends_on:
-      postgres:
         condition: service_healthy
     networks:
       - diet-app-network
@@ -86,5 +67,3 @@ volumes:
 networks:
   diet-app-network:
     driver: bridge 
-
- 

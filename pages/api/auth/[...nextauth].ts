@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password are required");
+          throw new Error("RequiredFields");
         }
 
         try {
@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
             // User exists, verify password
             if (!existingUser.passwordHash) {
               console.error("User exists but no password hash found");
-              throw new Error("Invalid login method");
+              throw new Error("InvalidLoginMethod");
             }
 
             const isValidPassword = await bcrypt.compare(
@@ -76,7 +76,7 @@ export const authOptions: NextAuthOptions = {
             
             if (!isValidPassword) {
               console.error("Invalid password for user:", credentials.email);
-              throw new Error("Invalid credentials");
+              throw new Error("InvalidCredentials");
             }
 
             return {
@@ -88,36 +88,56 @@ export const authOptions: NextAuthOptions = {
           } else {
             // New user registration
             if (!credentials.name) {
-              throw new Error("Name is required for registration");
+              throw new Error("RequiredFields");
+            }
+
+            // Validate password strength
+            if (credentials.password.length < 8) {
+              throw new Error("WeakPassword");
+            }
+
+            const hasUpperCase = /[A-Z]/.test(credentials.password);
+            const hasLowerCase = /[a-z]/.test(credentials.password);
+            const hasNumbers = /\d/.test(credentials.password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(credentials.password);
+
+            if (!hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChar) {
+              throw new Error("WeakPassword");
             }
 
             const hashedPassword = await bcrypt.hash(credentials.password, 12);
             
-            const newUser = await prisma.user.create({
-              data: {
-                email: credentials.email,
-                name: credentials.name,
-                passwordHash: hashedPassword,
-                role: "USER",
-              },
-            });
+            try {
+              const newUser = await prisma.user.create({
+                data: {
+                  email: credentials.email,
+                  name: credentials.name,
+                  passwordHash: hashedPassword,
+                  role: "USER",
+                },
+              });
 
-            console.log("New user created:", newUser.email);
+              console.log("New user created:", newUser.email);
 
-            return {
-              id: newUser.id,
-              email: newUser.email,
-              name: newUser.name || "",
-              role: newUser.role,
-            };
+              return {
+                id: newUser.id,
+                email: newUser.email,
+                name: newUser.name || "",
+                role: newUser.role,
+              };
+            } catch (error) {
+              if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+                throw new Error("EmailExists");
+              }
+              throw error;
+            }
           }
         } catch (error) {
           console.error("Auth error:", error);
-          // Throw specific error messages
           if (error instanceof Error) {
             throw error;
           }
-          throw new Error("Authentication failed");
+          throw new Error("AuthenticationFailed");
         }
       },
     }),
