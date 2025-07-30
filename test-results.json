@@ -10,7 +10,9 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 1
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -40,7 +42,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -54,7 +58,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "firefox",
         "name": "firefox",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -68,7 +74,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "webkit",
         "name": "webkit",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -82,7 +90,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -96,7 +106,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -110,7 +122,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Microsoft Edge",
         "name": "Microsoft Edge",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -124,7 +138,9 @@
         "outputDir": "/Users/sina/Desktop/wollie_software/MVP/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Google Chrome",
         "name": "Google Chrome",
         "testDir": "/Users/sina/Desktop/wollie_software/MVP/tests",
@@ -147,19 +163,111 @@
       "timeout": 120000
     }
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: Process from config.webServer was not able to start. Exit code: 1",
-      "stack": "Error: Process from config.webServer was not able to start. Exit code: 1"
+      "title": "e2e/registration.spec.ts",
+      "file": "e2e/registration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "User Registration",
+          "file": "e2e/registration.spec.ts",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should register with minimum required fields",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 10634,
+                      "error": {
+                        "message": "TimeoutError: page.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"email\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: page.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"email\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts:54:16",
+                        "location": {
+                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts",
+                          "column": 16,
+                          "line": 54
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 52 |\u001b[39m\n \u001b[90m 53 |\u001b[39m     \u001b[90m// Fill only required fields\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 54 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"email\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39memail)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 55 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n \u001b[90m 57 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts",
+                            "column": 16,
+                            "line": 54
+                          },
+                          "message": "TimeoutError: page.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"email\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 52 |\u001b[39m\n \u001b[90m 53 |\u001b[39m     \u001b[90m// Fill only required fields\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 54 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"email\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39memail)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 55 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m minimalUser\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n \u001b[90m 57 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts:54:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-07-30T09:12:23.789Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/e2e-registration-User-Regi-bd1ab-ith-minimum-required-fields-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/e2e/registration.spec.ts",
+                        "column": 16,
+                        "line": 54
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "00522865b2429d41f9e0-ca7649edcc70ed598181",
+              "file": "e2e/registration.spec.ts",
+              "line": 45,
+              "column": 7
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-07-30T07:31:17.137Z",
-    "duration": 917.503,
+    "startTime": "2025-07-30T09:12:23.149Z",
+    "duration": 11527.642999999996,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }
