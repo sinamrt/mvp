@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Email and password are required");
         }
 
         try {
@@ -64,22 +64,27 @@ export const authOptions: NextAuthOptions = {
 
           if (existingUser) {
             // User exists, verify password
-            if (existingUser.passwordHash) {
-              const isValidPassword = await bcrypt.compare(
-                credentials.password,
-                existingUser.passwordHash
-              );
-              
-              if (isValidPassword) {
-                return {
-                  id: existingUser.id,
-                  email: existingUser.email,
-                  name: existingUser.name || "",
-                  role: existingUser.role,
-                };
-              }
+            if (!existingUser.passwordHash) {
+              console.error("User exists but no password hash found");
+              throw new Error("Invalid login method");
             }
-            return null;
+
+            const isValidPassword = await bcrypt.compare(
+              credentials.password,
+              existingUser.passwordHash
+            );
+            
+            if (!isValidPassword) {
+              console.error("Invalid password for user:", credentials.email);
+              throw new Error("Invalid credentials");
+            }
+
+            return {
+              id: existingUser.id,
+              email: existingUser.email,
+              name: existingUser.name || "",
+              role: existingUser.role,
+            };
           } else {
             // New user registration
             if (!credentials.name) {
@@ -97,6 +102,8 @@ export const authOptions: NextAuthOptions = {
               },
             });
 
+            console.log("New user created:", newUser.email);
+
             return {
               id: newUser.id,
               email: newUser.email,
@@ -106,7 +113,11 @@ export const authOptions: NextAuthOptions = {
           }
         } catch (error) {
           console.error("Auth error:", error);
-          return null;
+          // Throw specific error messages
+          if (error instanceof Error) {
+            throw error;
+          }
+          throw new Error("Authentication failed");
         }
       },
     }),
@@ -114,9 +125,11 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async signIn() {
+    async signIn({ user, account }) {
+      console.log("Sign in attempt:", { user: user.email, provider: account?.provider });
       return true;
     },
     async session({ session, token }) {
@@ -136,7 +149,9 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
+    error: "/auth/error",
   },
+  debug: process.env.NODE_ENV === "development",
 };
 
 export default NextAuth(authOptions);

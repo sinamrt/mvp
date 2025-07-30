@@ -36,7 +36,7 @@ export default defineConfig({
   use: {
     // Base URL for your application
     baseURL: 'http://localhost:3000',
-    
+
     // Collect trace when retrying the failed test
     trace: 'on-first-retry',
     
@@ -71,7 +71,7 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    
+
     // Mobile browsers
     {
       name: 'Mobile Chrome',
@@ -81,7 +81,7 @@ export default defineConfig({
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
     },
-    
+
     // Branded browsers
     {
       name: 'Microsoft Edge',
