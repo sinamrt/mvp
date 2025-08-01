@@ -97,12 +97,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4333,
+                      "duration": 8305,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-01T02:38:03.937Z",
+                      "startTime": "2025-08-01T14:02:24.327Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -112,12 +112,12 @@
               ],
               "id": "54d6e0eddee942cc826c-5a05a9c8480f3d97c364",
               "file": "auth-flow-high-priority.spec.ts",
-              "line": 10,
+              "line": 9,
               "column": 7
             },
             {
               "title": "TC016: should handle sign in button functionality",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -130,63 +130,28 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 1822,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:53:74",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                          "column": 74,
-                          "line": 53
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 51 |\u001b[39m     \n \u001b[90m 52 |\u001b[39m     \u001b[90m// At least one of these should be true\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 53 |\u001b[39m     expect(hasModal \u001b[33m||\u001b[39m isRedirected \u001b[33m||\u001b[39m currentUrl\u001b[33m.\u001b[39mincludes(\u001b[32m'next-auth'\u001b[39m))\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 54 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 55 |\u001b[39m\n \u001b[90m 56 |\u001b[39m   \u001b[90m// TC017: Sign Out Button Functionality\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                            "column": 74,
-                            "line": 53
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m 51 |\u001b[39m     \n \u001b[90m 52 |\u001b[39m     \u001b[90m// At least one of these should be true\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 53 |\u001b[39m     expect(hasModal \u001b[33m||\u001b[39m isRedirected \u001b[33m||\u001b[39m currentUrl\u001b[33m.\u001b[39mincludes(\u001b[32m'next-auth'\u001b[39m))\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 54 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 55 |\u001b[39m\n \u001b[90m 56 |\u001b[39m   \u001b[90m// TC017: Sign Out Button Functionality\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:53:74\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 11645,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-01T02:38:03.949Z",
+                      "startTime": "2025-08-01T14:02:24.336Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/video.webm"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                        "column": 74,
-                        "line": 53
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "54d6e0eddee942cc826c-43f55735f44bf2c4cad1",
               "file": "auth-flow-high-priority.spec.ts",
-              "line": 37,
-              "column": 7
+              "line": 32,
+              "column": 5
             },
             {
               "title": "TC017: should handle sign out button functionality",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -199,58 +164,24 @@
                     {
                       "workerIndex": 2,
                       "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 6398,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('.auth-status-content')\nExpected string: \u001b[32m\"test.user.1754015884475.60434@example.com\"\u001b[39m\nReceived string: \u001b[31m\"Sign In\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.auth-status-content')\u001b[22m\n\u001b[2m    7 × locator resolved to <div class=\"auth-status-content\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"Sign In\"\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('.auth-status-content')\nExpected string: \u001b[32m\"test.user.1754015884475.60434@example.com\"\u001b[39m\nReceived string: \u001b[31m\"Sign In\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.auth-status-content')\u001b[22m\n\u001b[2m    7 × locator resolved to <div class=\"auth-status-content\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"Sign In\"\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:69:56",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                          "column": 56,
-                          "line": 69
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 67 |\u001b[39m     \u001b[90m// Go to homepage and verify user is authenticated\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.auth-status-content'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(email)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 70 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Sign Out\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m     \n \u001b[90m 72 |\u001b[39m     \u001b[90m// Click sign out button\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                            "column": 56,
-                            "line": 69
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('.auth-status-content')\nExpected string: \u001b[32m\"test.user.1754015884475.60434@example.com\"\u001b[39m\nReceived string: \u001b[31m\"Sign In\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.auth-status-content')\u001b[22m\n\u001b[2m    7 × locator resolved to <div class=\"auth-status-content\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"Sign In\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 67 |\u001b[39m     \u001b[90m// Go to homepage and verify user is authenticated\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.auth-status-content'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(email)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 70 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Sign Out\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m     \n \u001b[90m 72 |\u001b[39m     \u001b[90m// Click sign out button\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:69:56\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 8963,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-01T02:38:03.908Z",
-                      "annotations": [],
-                      "attachments": [
+                      "steps": [
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/error-context.md"
+                          "title": "Expect \"❌ Did not redirect or show unauthenticated message after sign out\"",
+                          "duration": 885
                         }
                       ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                        "column": 56,
-                        "line": 69
-                      }
+                      "startTime": "2025-08-01T14:02:24.339Z",
+                      "annotations": [],
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "54d6e0eddee942cc826c-b48eef9e067415c155ae",
@@ -274,12 +205,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5027,
+                      "duration": 8224,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-01T02:38:03.920Z",
+                      "startTime": "2025-08-01T14:02:24.373Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -289,7 +220,7 @@
               ],
               "id": "54d6e0eddee942cc826c-02fe43fc7526262d6b3b",
               "file": "auth-flow-high-priority.spec.ts",
-              "line": 90,
+              "line": 96,
               "column": 7
             },
             {
@@ -305,34 +236,34 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 6591,
+                      "duration": 2426,
                       "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:131:65",
+                        "message": "Error: expect: Property 'then' not found.",
+                        "stack": "Error: expect: Property 'then' not found.\n    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:135:8",
                         "location": {
                           "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                          "column": 65,
-                          "line": 131
+                          "column": 8,
+                          "line": 135
                         },
-                        "snippet": "\u001b[0m \u001b[90m 129 |\u001b[39m     \n \u001b[90m 130 |\u001b[39m     \u001b[90m// Should show network error message\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 131 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 132 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Network error'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     \u001b[90m// Go back online\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 133 |\u001b[39m     \u001b[90m// Step 5: Poll for fallback UI or error page\u001b[39m\n \u001b[90m 134 |\u001b[39m     \u001b[36mconst\u001b[39m fallbackAppeared \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m expect\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m       \u001b[33m.\u001b[39mpoll(\u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m     |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m         \u001b[36mconst\u001b[39m isOnErrorPage \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/auth/error'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 137 |\u001b[39m         \u001b[36mconst\u001b[39m fallbackVisible \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\n \u001b[90m 138 |\u001b[39m           \u001b[33m.\u001b[39mlocator(\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                            "column": 65,
-                            "line": 131
+                            "column": 8,
+                            "line": 135
                           },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 129 |\u001b[39m     \n \u001b[90m 130 |\u001b[39m     \u001b[90m// Should show network error message\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 131 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 132 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Network error'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     \u001b[90m// Go back online\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:131:65\u001b[22m"
+                          "message": "Error: expect: Property 'then' not found.\n\n\u001b[0m \u001b[90m 133 |\u001b[39m     \u001b[90m// Step 5: Poll for fallback UI or error page\u001b[39m\n \u001b[90m 134 |\u001b[39m     \u001b[36mconst\u001b[39m fallbackAppeared \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m expect\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m       \u001b[33m.\u001b[39mpoll(\u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m     |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m         \u001b[36mconst\u001b[39m isOnErrorPage \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/auth/error'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 137 |\u001b[39m         \u001b[36mconst\u001b[39m fallbackVisible \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\n \u001b[90m 138 |\u001b[39m           \u001b[33m.\u001b[39mlocator(\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:135:8\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-01T02:38:06.663Z",
+                      "startTime": "2025-08-01T14:02:32.927Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -348,8 +279,8 @@
                       ],
                       "errorLocation": {
                         "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                        "column": 65,
-                        "line": 131
+                        "column": 8,
+                        "line": 135
                       }
                     }
                   ],
@@ -358,76 +289,7 @@
               ],
               "id": "54d6e0eddee942cc826c-2e096b50f81f2af8858e",
               "file": "auth-flow-high-priority.spec.ts",
-              "line": 114,
-              "column": 7
-            },
-            {
-              "title": "TC021b: should recover from network errors and allow successful authentication",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6517,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n\u001b[2m    - waiting for\" http://localhost:3000/api/auth/error\" navigation to finish...\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n\u001b[2m    - waiting for\" http://localhost:3000/api/auth/error\" navigation to finish...\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:162:65",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                          "column": 65,
-                          "line": 162
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 160 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39msetOffline(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 162 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 163 |\u001b[39m     \n \u001b[90m 164 |\u001b[39m     \u001b[90m// Go online, retry\u001b[39m\n \u001b[90m 165 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39msetOffline(\u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                            "column": 65,
-                            "line": 162
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"network-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"network-error\"]')\u001b[22m\n\u001b[2m    - waiting for\" http://localhost:3000/api/auth/error\" navigation to finish...\u001b[22m\n\n\n\u001b[0m \u001b[90m 160 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39msetOffline(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 162 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"network-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 163 |\u001b[39m     \n \u001b[90m 164 |\u001b[39m     \u001b[90m// Go online, retry\u001b[39m\n \u001b[90m 165 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39msetOffline(\u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:162:65\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-01T02:38:08.422Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/video.webm"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts",
-                        "column": 65,
-                        "line": 162
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "54d6e0eddee942cc826c-5f217dd238787554a67f",
-              "file": "auth-flow-high-priority.spec.ts",
-              "line": 149,
+              "line": 115,
               "column": 7
             }
           ]
@@ -437,11 +299,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-01T02:38:03.193Z",
-    "duration": 11771.105,
-    "expected": 2,
+    "startTime": "2025-08-01T14:02:20.692Z",
+    "duration": 15676.991999999998,
+    "expected": 4,
     "skipped": 0,
-    "unexpected": 4,
+    "unexpected": 1,
     "flaky": 0
   }
 }

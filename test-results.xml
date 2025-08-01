@@ -1,112 +1,27 @@
-<testsuites id="" name="" tests="6" failures="4" skipped="0" errors="0" time="11.771105">
-<testsuite name="auth-flow-high-priority.spec.ts" timestamp="2025-08-01T02:38:03.369Z" hostname="chromium" tests="6" failures="4" skipped="0" time="30.688" errors="0">
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC012: should redirect and authenticate after successful registration" classname="auth-flow-high-priority.spec.ts" time="4.333">
+<testsuites id="" name="" tests="5" failures="1" skipped="0" errors="0" time="15.676991999999998">
+<testsuite name="auth-flow-high-priority.spec.ts" timestamp="2025-08-01T14:02:23.846Z" hostname="chromium" tests="5" failures="1" skipped="0" time="39.563" errors="0">
+<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC012: should redirect and authenticate after successful registration" classname="auth-flow-high-priority.spec.ts" time="8.305">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC016: should handle sign in button functionality" classname="auth-flow-high-priority.spec.ts" time="1.822">
-<failure message="auth-flow-high-priority.spec.ts:37:7 TC016: should handle sign in button functionality" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:37:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC016: should handle sign in button functionality 
-
-    Error: expect(received).toBe(expected) // Object.is equality
-
-    Expected: true
-    Received: false
-
-      51 |     
-      52 |     // At least one of these should be true
-    > 53 |     expect(hasModal || isRedirected || currentUrl.includes('next-auth')).toBe(true);
-         |                                                                          ^
-      54 |   });
-      55 |
-      56 |   // TC017: Sign Out Button Functionality
-        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:53:74
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-a1546-ign-in-button-functionality-chromium/video.webm]]
-]]>
-</system-out>
+<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC016: should handle sign in button functionality" classname="auth-flow-high-priority.spec.ts" time="11.645">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC017: should handle sign out button functionality" classname="auth-flow-high-priority.spec.ts" time="6.398">
-<failure message="auth-flow-high-priority.spec.ts:57:7 TC017: should handle sign out button functionality" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:57:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC017: should handle sign out button functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toContainText(expected)
-
-    Locator: locator('.auth-status-content')
-    Expected string: "test.user.1754015884475.60434@example.com"
-    Received string: "Sign In"
-    Call log:
-      - Expect "toContainText" with timeout 5000ms
-      - waiting for locator('.auth-status-content')
-        7 × locator resolved to <div class="auth-status-content">…</div>
-          - unexpected value "Sign In"
-
-
-      67 |     // Go to homepage and verify user is authenticated
-      68 |     await page.goto('/');
-    > 69 |     await expect(page.locator('.auth-status-content')).toContainText(email);
-         |                                                        ^
-      70 |     await expect(page.locator('button:has-text("Sign Out")')).toBeVisible();
-      71 |     
-      72 |     // Click sign out button
-        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:69:56
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-c4577-gn-out-button-functionality-chromium/error-context.md]]
-]]>
-</system-out>
+<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC017: should handle sign out button functionality" classname="auth-flow-high-priority.spec.ts" time="8.963">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC020: should display correct error messages on authentication error page" classname="auth-flow-high-priority.spec.ts" time="5.027">
+<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC020: should display correct error messages on authentication error page" classname="auth-flow-high-priority.spec.ts" time="8.224">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication" classname="auth-flow-high-priority.spec.ts" time="6.591">
-<failure message="auth-flow-high-priority.spec.ts:114:7 TC021: should handle network errors gracefully during authentication" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:114:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication 
+<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication" classname="auth-flow-high-priority.spec.ts" time="2.426">
+<failure message="auth-flow-high-priority.spec.ts:115:7 TC021: should handle network errors gracefully during authentication" type="FAILURE">
+<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:115:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication 
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+    Error: expect: Property 'then' not found.
 
-    Locator: locator('[data-testid="network-error"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('[data-testid="network-error"]')
-
-
-      129 |     
-      130 |     // Should show network error message
-    > 131 |     await expect(page.locator('[data-testid="network-error"]')).toBeVisible();
-          |                                                                 ^
-      132 |     await expect(page.locator('[data-testid="network-error"]')).toContainText('Network error');
-      133 |     
-      134 |     // Go back online
-        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:131:65
+      133 |     // Step 5: Poll for fallback UI or error page
+      134 |     const fallbackAppeared = await expect
+    > 135 |       .poll(async () => {
+          |        ^
+      136 |         const isOnErrorPage = page.url().includes('/auth/error');
+      137 |         const fallbackVisible = await page
+      138 |           .locator(
+        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:135:8
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/test-failed-1.png
@@ -122,47 +37,6 @@
 [[ATTACHMENT|test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/test-failed-1.png]]
 
 [[ATTACHMENT|test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/video.webm]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021b: should recover from network errors and allow successful authentication" classname="auth-flow-high-priority.spec.ts" time="6.517">
-<failure message="auth-flow-high-priority.spec.ts:149:7 TC021b: should recover from network errors and allow successful authentication" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:149:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021b: should recover from network errors and allow successful authentication 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('[data-testid="network-error"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('[data-testid="network-error"]')
-        - waiting for" http://localhost:3000/api/auth/error" navigation to finish...
-
-
-      160 |     await context.setOffline(true);
-      161 |     await page.click('[data-testid="register-button"]');
-    > 162 |     await expect(page.locator('[data-testid="network-error"]')).toBeVisible();
-          |                                                                 ^
-      163 |     
-      164 |     // Go online, retry
-      165 |     await context.setOffline(false);
-        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:162:65
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-1aab2-w-successful-authentication-chromium/video.webm]]
 ]]>
 </system-out>
 </testcase>

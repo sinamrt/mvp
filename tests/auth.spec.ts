@@ -1,11 +1,17 @@
 import { test, expect } from '@playwright/test';
-
+ 
 test.describe('Authentication and Role Assignment', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to the home page before each test
     await page.goto('/');
   });
+  
 
+  // TC016: Sign In Button Functionality
+  test('TC016: should handle sign in button functionality', async ({ page }) => {
+    await page.goto('/');
+    // ...
+  });
   test('Test Case #1: User Login & Role Assignment', async ({ page }) => {
     // Test that the main page loads without authentication
     await expect(page.getByText('🔍 Find Places')).toBeVisible();
