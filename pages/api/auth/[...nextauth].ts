@@ -69,22 +69,22 @@ export const authOptions: NextAuthOptions = {
               throw new Error("InvalidLoginMethod");
             }
 
-            const isValidPassword = await bcrypt.compare(
-              credentials.password,
-              existingUser.passwordHash
-            );
-            
+              const isValidPassword = await bcrypt.compare(
+                credentials.password,
+                existingUser.passwordHash
+              );
+              
             if (!isValidPassword) {
               console.error("Invalid password for user:", credentials.email);
               throw new Error("InvalidCredentials");
             }
 
-            return {
-              id: existingUser.id,
-              email: existingUser.email,
-              name: existingUser.name || "",
-              role: existingUser.role,
-            };
+                return {
+                  id: existingUser.id,
+                  email: existingUser.email,
+                  name: existingUser.name || "",
+                  role: existingUser.role,
+                };
           } else {
             // New user registration
             if (!credentials.name) {
@@ -108,23 +108,23 @@ export const authOptions: NextAuthOptions = {
             const hashedPassword = await bcrypt.hash(credentials.password, 12);
             
             try {
-              const newUser = await prisma.user.create({
-                data: {
-                  email: credentials.email,
-                  name: credentials.name,
-                  passwordHash: hashedPassword,
-                  role: "USER",
-                },
-              });
+            const newUser = await prisma.user.create({
+              data: {
+                email: credentials.email,
+                name: credentials.name,
+                passwordHash: hashedPassword,
+                role: "USER",
+              },
+            });
 
               console.log("New user created:", newUser.email);
 
-              return {
-                id: newUser.id,
-                email: newUser.email,
-                name: newUser.name || "",
-                role: newUser.role,
-              };
+            return {
+              id: newUser.id,
+              email: newUser.email,
+              name: newUser.name || "",
+              role: newUser.role,
+            };
             } catch (error) {
               if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
                 throw new Error("EmailExists");

@@ -142,15 +142,15 @@ export default function Register() {
           <div className="form-group">
             <label htmlFor="password" className="form-label required">Password</label>
             <div className="password-input-wrapper">
-              <input
+            <input
                 type={passwordVisible ? "text" : "password"}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="form-input"
-                required
-                minLength={8}
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className="form-input"
+              required
+              minLength={8}
                 data-testid="password"
                 aria-invalid={toAriaInvalid(formData.password.length < 8)}
               />
