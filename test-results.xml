@@ -1,42 +1,264 @@
-<testsuites id="" name="" tests="5" failures="1" skipped="0" errors="0" time="15.676991999999998">
-<testsuite name="auth-flow-high-priority.spec.ts" timestamp="2025-08-01T14:02:23.846Z" hostname="chromium" tests="5" failures="1" skipped="0" time="39.563" errors="0">
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC012: should redirect and authenticate after successful registration" classname="auth-flow-high-priority.spec.ts" time="8.305">
+<testsuites id="" name="" tests="10" failures="6" skipped="0" errors="0" time="18.533065999999998">
+<testsuite name="critical-tests.spec.ts" timestamp="2025-08-03T08:54:40.338Z" hostname="chromium" tests="10" failures="6" skipped="0" time="56.206" errors="0">
+<testcase name="Critical Path Tests › should load homepage" classname="critical-tests.spec.ts" time="1.004">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC016: should handle sign in button functionality" classname="auth-flow-high-priority.spec.ts" time="11.645">
+<testcase name="Critical Path Tests › should navigate to registration page" classname="critical-tests.spec.ts" time="1.902">
 </testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC017: should handle sign out button functionality" classname="auth-flow-high-priority.spec.ts" time="8.963">
-</testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC020: should display correct error messages on authentication error page" classname="auth-flow-high-priority.spec.ts" time="8.224">
-</testcase>
-<testcase name="Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication" classname="auth-flow-high-priority.spec.ts" time="2.426">
-<failure message="auth-flow-high-priority.spec.ts:115:7 TC021: should handle network errors gracefully during authentication" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow-high-priority.spec.ts:115:7 › Authentication Flow - High Priority Test Cases (TC012, TC016, TC017, TC020, TC021) › TC021: should handle network errors gracefully during authentication 
+<testcase name="Critical Path Tests › should register new user" classname="critical-tests.spec.ts" time="11.536">
+<failure message="critical-tests.spec.ts:32:7 should register new user" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:32:7 › Critical Path Tests › should register new user ────────
 
-    Error: expect: Property 'then' not found.
+    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
 
-      133 |     // Step 5: Poll for fallback UI or error page
-      134 |     const fallbackAppeared = await expect
-    > 135 |       .poll(async () => {
-          |        ^
-      136 |         const isOnErrorPage = page.url().includes('/auth/error');
-      137 |         const fallbackVisible = await page
-      138 |           .locator(
-        at /Users/sina/Desktop/wollie_software/MVP/tests/auth-flow-high-priority.spec.ts:135:8
+    Locator: locator('[data-testid="terms-checkbox"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('[data-testid="terms-checkbox"]')
+
+
+      35 |     
+      36 |     const termsCheckbox = page.locator('[data-testid="terms-checkbox"]');
+    > 37 |     await expect(termsCheckbox).toBeVisible({ timeout: 10000 });  // wait until it's visible
+         |                                 ^
+      38 |     await termsCheckbox.check();  // check only after confirming visibility
+      39 |
+      40 |     await page.fill('[data-testid="email"]', user.email);
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:37:33
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/test-failed-1.png
+    ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/video.webm
+    ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/test-failed-1.png]]
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/test-failed-1.png]]
 
-[[ATTACHMENT|test-results/auth-flow-high-priority-Au-2883d-fully-during-authentication-chromium/video.webm]]
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Critical Path Tests › should login registered user" classname="critical-tests.spec.ts" time="11.671">
+<failure message="critical-tests.spec.ts:52:7 should login registered user" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:52:7 › Critical Path Tests › should login registered user ────
+
+    TimeoutError: page.check: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="terms-checkbox"]')
+
+
+      58 |     await page.fill('[data-testid="password"]', user.password);
+      59 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
+    > 60 |     await page.check('[data-testid="terms-checkbox"]');
+         |                ^
+      61 |     await page.click('[data-testid="register-button"]');
+      62 |     
+      63 |     // Logout
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:60:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Critical Path Tests › should show validation errors" classname="critical-tests.spec.ts" time="6.008">
+<failure message="critical-tests.spec.ts:76:7 should show validation errors" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:76:7 › Critical Path Tests › should show validation errors ───
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+    Locator: locator('[data-testid="email-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="email-error"]')
+
+
+      78 |     await page.click('[data-testid="register-button"]');
+      79 |     
+    > 80 |     await expect(page.locator('[data-testid="email-error"]')).toBeVisible();
+         |                                                               ^
+      81 |     await expect(page.locator('[data-testid="password-error"]')).toBeVisible();
+      82 |   });
+      83 |
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:80:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Critical Path Tests › should validate password strength" classname="critical-tests.spec.ts" time="0.557">
+</testcase>
+<testcase name="Critical Path Tests › should prevent duplicate email registration" classname="critical-tests.spec.ts" time="10.556">
+<failure message="critical-tests.spec.ts:93:7 should prevent duplicate email registration" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:93:7 › Critical Path Tests › should prevent duplicate email registration 
+
+    TimeoutError: page.check: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="terms-checkbox"]')
+
+
+       99 |     await page.fill('[data-testid="password"]', user.password);
+      100 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
+    > 101 |     await page.check('[data-testid="terms-checkbox"]');
+          |                ^
+      102 |     await page.click('[data-testid="register-button"]');
+      103 |     
+      104 |     // Logout
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:101:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Critical Path Tests › should validate password match" classname="critical-tests.spec.ts" time="0.787">
+</testcase>
+<testcase name="Critical Path Tests › should require terms acceptance" classname="critical-tests.spec.ts" time="6.525">
+<failure message="critical-tests.spec.ts:128:7 should require terms acceptance" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:128:7 › Critical Path Tests › should require terms acceptance 
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+    Locator: locator('[data-testid="terms-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="terms-error"]')
+
+
+      136 |     
+      137 |     await page.click('[data-testid="register-button"]');
+    > 138 |     await expect(page.locator('[data-testid="terms-error"]')).toBeVisible();
+          |                                                               ^
+      139 |   });
+      140 |   
+      141 |   // 10. Loading State
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:138:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Critical Path Tests › should show loading state" classname="critical-tests.spec.ts" time="5.66">
+<failure message="critical-tests.spec.ts:142:7 should show loading state" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:142:7 › Critical Path Tests › should show loading state ──────
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+    Locator: locator('[data-testid="terms-checkbox"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="terms-checkbox"]')
+
+
+      148 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
+      149 |     // Ensure checkbox is visible and interactable
+    > 150 |     await expect(page.locator('[data-testid="terms-checkbox"]')).toBeVisible({ timeout: 5000 });
+          |                                                                  ^
+      151 |     await page.check('[data-testid="terms-checkbox"]');
+      152 |
+      153 |     
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:150:66
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/error-context.md]]
 ]]>
 </system-out>
 </testcase>

@@ -22,21 +22,28 @@ test.describe('Critical Path Tests', () => {
   });
 
   // 2. Registration Form Access
+   
   test('should navigate to registration page', async ({ page }) => {
-    await page.click('[data-testid="register-link"]');
+    await page.click('text=Get Started'); // Matches visible "Get Started" link
     await expect(page).toHaveURL('/register');
   });
-
+  
   // 3. Basic Registration
   test('should register new user', async ({ page }) => {
     await page.goto('/register');
     const user = generateTestUser();
     
+    const termsCheckbox = page.locator('[data-testid="terms-checkbox"]');
+    await expect(termsCheckbox).toBeVisible({ timeout: 10000 });  // wait until it's visible
+    await termsCheckbox.check();  // check only after confirming visibility
+
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
     await page.check('[data-testid="terms-checkbox"]');
     
+    
+
     await page.click('[data-testid="register-button"]');
     await expect(page).toHaveURL('/dashboard');
   });
@@ -130,7 +137,7 @@ test.describe('Critical Path Tests', () => {
     await page.click('[data-testid="register-button"]');
     await expect(page.locator('[data-testid="terms-error"]')).toBeVisible();
   });
-
+  
   // 10. Loading State
   test('should show loading state', async ({ page }) => {
     await page.goto('/register');
@@ -139,7 +146,10 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
+    // Ensure checkbox is visible and interactable
+    await expect(page.locator('[data-testid="terms-checkbox"]')).toBeVisible({ timeout: 5000 });
     await page.check('[data-testid="terms-checkbox"]');
+
     
     await page.click('[data-testid="register-button"]');
     await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible();

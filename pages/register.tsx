@@ -256,6 +256,9 @@ export default function Register() {
           >
             Continue with GitHub
           </button>
+          <p>
+            By creating an account, you agree to our <Link href="/terms">Terms of Service</Link> and <Link href="/privacy">Privacy Policy</Link>.
+          </p>
         </div>
       </div>
     </div>
