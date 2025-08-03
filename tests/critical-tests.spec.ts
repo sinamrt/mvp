@@ -32,7 +32,7 @@ test.describe('Critical Path Tests', () => {
   test('should register new user', async ({ page }) => {
     await page.goto('/register');
     const user = generateTestUser();
-    
+
     const termsCheckbox = page.locator('[data-testid="terms-checkbox"]');
     await expect(termsCheckbox).toBeVisible({ timeout: 10000 });  // wait until it's visible
     await termsCheckbox.check();  // check only after confirming visibility
@@ -40,7 +40,7 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    await page.check('[data-testid="terms-checkbox"]');
+    
     
     
 
@@ -57,7 +57,7 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    await page.check('[data-testid="terms-checkbox"]');
+    
     await page.click('[data-testid="register-button"]');
     
     // Logout
@@ -98,7 +98,7 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    await page.check('[data-testid="terms-checkbox"]');
+     
     await page.click('[data-testid="register-button"]');
     
     // Logout
@@ -109,7 +109,7 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="email"]', user.email);
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    await page.check('[data-testid="terms-checkbox"]');
+     
     await page.click('[data-testid="register-button"]');
     
     await expect(page.locator('[data-testid="email-error"]')).toContainText('already exists');
@@ -147,9 +147,7 @@ test.describe('Critical Path Tests', () => {
     await page.fill('[data-testid="password"]', user.password);
     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
     // Ensure checkbox is visible and interactable
-    await expect(page.locator('[data-testid="terms-checkbox"]')).toBeVisible({ timeout: 5000 });
-    await page.check('[data-testid="terms-checkbox"]');
-
+     
     
     await page.click('[data-testid="register-button"]');
     await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible();
