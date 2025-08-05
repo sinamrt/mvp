@@ -73,604 +73,267 @@
       "file": "critical-tests.spec.ts",
       "column": 0,
       "line": 0,
-      "specs": [],
-      "suites": [
+      "specs": [
         {
-          "title": "Critical Path Tests",
-          "file": "critical-tests.spec.ts",
-          "line": 13,
-          "column": 6,
-          "specs": [
+          "title": "register multiple users",
+          "ok": false,
+          "tags": [],
+          "tests": [
             {
-              "title": "should load homepage",
-              "ok": true,
-              "tags": [],
-              "tests": [
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
                 {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1004,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:40.760Z",
-                      "annotations": [],
-                      "attachments": []
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
                     }
                   ],
-                  "status": "expected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-34aa954b8aee052ba1a3",
-              "file": "critical-tests.spec.ts",
-              "line": 19,
-              "column": 7
-            },
-            {
-              "title": "should navigate to registration page",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:11.365Z",
                   "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 1902,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:40.763Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "attachments": []
                 }
               ],
-              "id": "195d1d75331af2b541b4-1425deed0139e19f802d",
-              "file": "critical-tests.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "should register new user",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 11536,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 10000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 10000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:37:33",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 33,
-                          "line": 37
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m     \n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m termsCheckbox \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(termsCheckbox)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m  \u001b[90m// wait until it's visible\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m termsCheckbox\u001b[33m.\u001b[39mcheck()\u001b[33m;\u001b[39m  \u001b[90m// check only after confirming visibility\u001b[39m\n \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"email\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39memail)\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 33,
-                            "line": 37
-                          },
-                          "message": "Error: \u001b[31mTimed out 10000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 35 |\u001b[39m     \n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m termsCheckbox \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(termsCheckbox)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m  \u001b[90m// wait until it's visible\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m termsCheckbox\u001b[33m.\u001b[39mcheck()\u001b[33m;\u001b[39m  \u001b[90m// check only after confirming visibility\u001b[39m\n \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"email\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39memail)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:37:33\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:40.765Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 33,
-                        "line": 37
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-eb87a5a0a0da60ca9a97",
-              "file": "critical-tests.spec.ts",
-              "line": 32,
-              "column": 7
-            },
-            {
-              "title": "should login registered user",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 11671,
-                      "error": {
-                        "message": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:60:16",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 16,
-                          "line": 60
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m     \n \u001b[90m 63 |\u001b[39m     \u001b[90m// Logout\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 16,
-                            "line": 60
-                          },
-                          "message": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m     \n \u001b[90m 63 |\u001b[39m     \u001b[90m// Logout\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:60:16\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:40.753Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 16,
-                        "line": 60
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-624009645c86b6911cf3",
-              "file": "critical-tests.spec.ts",
-              "line": 52,
-              "column": 7
-            },
-            {
-              "title": "should show validation errors",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6008,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"email-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"email-error\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"email-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"email-error\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:80:63",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 63,
-                          "line": 80
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 79 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 80 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"email-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 81 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"password-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 82 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 83 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 63,
-                            "line": 80
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"email-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"email-error\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 79 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 80 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"email-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 81 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"password-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 82 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 83 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:80:63\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:41.951Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 63,
-                        "line": 80
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-dc4562dffe00a1203944",
-              "file": "critical-tests.spec.ts",
-              "line": 76,
-              "column": 7
-            },
-            {
-              "title": "should validate password strength",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 557,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:42.847Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-1f040619303c4346d01c",
-              "file": "critical-tests.spec.ts",
-              "line": 85,
-              "column": 7
-            },
-            {
-              "title": "should prevent duplicate email registration",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 10556,
-                      "error": {
-                        "message": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:101:16",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 16,
-                          "line": 101
-                        },
-                        "snippet": "\u001b[0m \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 100 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 101 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 102 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 103 |\u001b[39m     \n \u001b[90m 104 |\u001b[39m     \u001b[90m// Logout\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 16,
-                            "line": 101
-                          },
-                          "message": "TimeoutError: page.check: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mpassword)\u001b[33m;\u001b[39m\n \u001b[90m 100 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 101 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 102 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 103 |\u001b[39m     \n \u001b[90m 104 |\u001b[39m     \u001b[90m// Logout\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:101:16\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:43.408Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 16,
-                        "line": 101
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-935fdef934838f7e0325",
-              "file": "critical-tests.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "should validate password match",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 787,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:48.304Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-472b4ad84a395d00d23d",
-              "file": "critical-tests.spec.ts",
-              "line": 119,
-              "column": 7
-            },
-            {
-              "title": "should require terms acceptance",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6525,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-error\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-error\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:138:63",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 63,
-                          "line": 138
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 138 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 139 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 140 |\u001b[39m   \n \u001b[90m 141 |\u001b[39m   \u001b[90m// 10. Loading State\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 63,
-                            "line": 138
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-error\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-error\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"register-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 138 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-error\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 139 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 140 |\u001b[39m   \n \u001b[90m 141 |\u001b[39m   \u001b[90m// 10. Loading State\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:138:63\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:49.191Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 63,
-                        "line": 138
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-7a5d7d49c13b6f0428b0",
-              "file": "critical-tests.spec.ts",
-              "line": 128,
-              "column": 7
-            },
-            {
-              "title": "should show loading state",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 5660,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:150:66",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                          "column": 66,
-                          "line": 150
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[90m// Ensure checkbox is visible and interactable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 151 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 152 |\u001b[39m\n \u001b[90m 153 |\u001b[39m     \u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                            "column": 66,
-                            "line": 150
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"terms-checkbox\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"terms-checkbox\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[data-testid=\"confirm-password\"]'\u001b[39m\u001b[33m,\u001b[39m user\u001b[33m.\u001b[39mconfirmPassword)\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[90m// Ensure checkbox is visible and interactable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 151 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mcheck(\u001b[32m'[data-testid=\"terms-checkbox\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 152 |\u001b[39m\n \u001b[90m 153 |\u001b[39m     \u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:150:66\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-03T08:54:52.925Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
-                        "column": 66,
-                        "line": 150
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "195d1d75331af2b541b4-98ff84aa242d6545e338",
-              "file": "critical-tests.spec.ts",
-              "line": 142,
-              "column": 7
+              "status": "unexpected"
             }
-          ]
+          ],
+          "id": "195d1d75331af2b541b4-0e474afa947c69284e69",
+          "file": "critical-tests.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "Session persists after navigating to protected route",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:11.329Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "195d1d75331af2b541b4-5f06dc8370e21f148a43",
+          "file": "critical-tests.spec.ts",
+          "line": 83,
+          "column": 5
+        },
+        {
+          "title": "Session persists after page reload",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "failed",
+                  "duration": 9,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:11.334Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "195d1d75331af2b541b4-04d0a4cd3e8cf1e42ddf",
+          "file": "critical-tests.spec.ts",
+          "line": 97,
+          "column": 9
+        },
+        {
+          "title": "Session cookie is set after login",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "failed",
+                  "duration": 15,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:11.329Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "195d1d75331af2b541b4-8bde485e9d285c11b981",
+          "file": "critical-tests.spec.ts",
+          "line": 113,
+          "column": 5
+        },
+        {
+          "title": "Session persists across internal navigation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 3,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:12.106Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "195d1d75331af2b541b4-80cd38b4727f56127471",
+          "file": "critical-tests.spec.ts",
+          "line": 127,
+          "column": 5
+        },
+        {
+          "title": "Session persists from saved state (reopen simulation)",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3,
+                  "error": {
+                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
+                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-05T10:39:12.104Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "195d1d75331af2b541b4-5b6a43583c320a52eba3",
+          "file": "critical-tests.spec.ts",
+          "line": 144,
+          "column": 5
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-03T08:54:40.160Z",
-    "duration": 18533.066,
-    "expected": 4,
+    "startTime": "2025-08-05T10:39:10.762Z",
+    "duration": 1532.71,
+    "expected": 0,
     "skipped": 0,
     "unexpected": 6,
     "flaky": 0

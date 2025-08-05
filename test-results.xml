@@ -1,266 +1,58 @@
-<testsuites id="" name="" tests="10" failures="6" skipped="0" errors="0" time="18.533065999999998">
-<testsuite name="critical-tests.spec.ts" timestamp="2025-08-03T08:54:40.338Z" hostname="chromium" tests="10" failures="6" skipped="0" time="56.206" errors="0">
-<testcase name="Critical Path Tests › should load homepage" classname="critical-tests.spec.ts" time="1.004">
-</testcase>
-<testcase name="Critical Path Tests › should navigate to registration page" classname="critical-tests.spec.ts" time="1.902">
-</testcase>
-<testcase name="Critical Path Tests › should register new user" classname="critical-tests.spec.ts" time="11.536">
-<failure message="critical-tests.spec.ts:32:7 should register new user" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:32:7 › Critical Path Tests › should register new user ────────
+<testsuites id="" name="" tests="6" failures="6" skipped="0" errors="0" time="1.53271">
+<testsuite name="critical-tests.spec.ts" timestamp="2025-08-05T10:39:10.944Z" hostname="chromium" tests="6" failures="6" skipped="0" time="0.047" errors="0">
+<testcase name="register multiple users" classname="critical-tests.spec.ts" time="0.009">
+<failure message="critical-tests.spec.ts:65:5 register multiple users" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:65:5 › register multiple users ───────────────────────────────
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('[data-testid="terms-checkbox"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('[data-testid="terms-checkbox"]')
-
-
-      35 |     
-      36 |     const termsCheckbox = page.locator('[data-testid="terms-checkbox"]');
-    > 37 |     await expect(termsCheckbox).toBeVisible({ timeout: 10000 });  // wait until it's visible
-         |                                 ^
-      38 |     await termsCheckbox.check();  // check only after confirming visibility
-      39 |
-      40 |     await page.fill('[data-testid="email"]', user.email);
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:37:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-register-new-user-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Critical Path Tests › should login registered user" classname="critical-tests.spec.ts" time="11.671">
-<failure message="critical-tests.spec.ts:52:7 should login registered user" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:52:7 › Critical Path Tests › should login registered user ────
+<testcase name="Session persists after navigating to protected route" classname="critical-tests.spec.ts" time="0.008">
+<failure message="critical-tests.spec.ts:83:5 Session persists after navigating to protected route" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:83:5 › Session persists after navigating to protected route ──
 
-    TimeoutError: page.check: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="terms-checkbox"]')
-
-
-      58 |     await page.fill('[data-testid="password"]', user.password);
-      59 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    > 60 |     await page.check('[data-testid="terms-checkbox"]');
-         |                ^
-      61 |     await page.click('[data-testid="register-button"]');
-      62 |     
-      63 |     // Logout
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:60:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-2b1a6-hould-login-registered-user-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Critical Path Tests › should show validation errors" classname="critical-tests.spec.ts" time="6.008">
-<failure message="critical-tests.spec.ts:76:7 should show validation errors" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:76:7 › Critical Path Tests › should show validation errors ───
+<testcase name="Session persists after page reload" classname="critical-tests.spec.ts" time="0.009">
+<failure message="critical-tests.spec.ts:97:9 Session persists after page reload" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:97:9 › Session persists after page reload ────────────────────
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('[data-testid="email-error"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('[data-testid="email-error"]')
-
-
-      78 |     await page.click('[data-testid="register-button"]');
-      79 |     
-    > 80 |     await expect(page.locator('[data-testid="email-error"]')).toBeVisible();
-         |                                                               ^
-      81 |     await expect(page.locator('[data-testid="password-error"]')).toBeVisible();
-      82 |   });
-      83 |
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:80:63
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-3e408-ould-show-validation-errors-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Critical Path Tests › should validate password strength" classname="critical-tests.spec.ts" time="0.557">
-</testcase>
-<testcase name="Critical Path Tests › should prevent duplicate email registration" classname="critical-tests.spec.ts" time="10.556">
-<failure message="critical-tests.spec.ts:93:7 should prevent duplicate email registration" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:93:7 › Critical Path Tests › should prevent duplicate email registration 
+<testcase name="Session cookie is set after login" classname="critical-tests.spec.ts" time="0.015">
+<failure message="critical-tests.spec.ts:113:5 Session cookie is set after login" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:113:5 › Session cookie is set after login ────────────────────
 
-    TimeoutError: page.check: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="terms-checkbox"]')
-
-
-       99 |     await page.fill('[data-testid="password"]', user.password);
-      100 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    > 101 |     await page.check('[data-testid="terms-checkbox"]');
-          |                ^
-      102 |     await page.click('[data-testid="register-button"]');
-      103 |     
-      104 |     // Logout
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:101:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-95b7c-uplicate-email-registration-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Critical Path Tests › should validate password match" classname="critical-tests.spec.ts" time="0.787">
-</testcase>
-<testcase name="Critical Path Tests › should require terms acceptance" classname="critical-tests.spec.ts" time="6.525">
-<failure message="critical-tests.spec.ts:128:7 should require terms acceptance" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:128:7 › Critical Path Tests › should require terms acceptance 
+<testcase name="Session persists across internal navigation" classname="critical-tests.spec.ts" time="0.003">
+<failure message="critical-tests.spec.ts:127:5 Session persists across internal navigation" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:127:5 › Session persists across internal navigation ──────────
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('[data-testid="terms-error"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('[data-testid="terms-error"]')
-
-
-      136 |     
-      137 |     await page.click('[data-testid="register-button"]');
-    > 138 |     await expect(page.locator('[data-testid="terms-error"]')).toBeVisible();
-          |                                                               ^
-      139 |   });
-      140 |   
-      141 |   // 10. Loading State
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:138:63
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Pa-9783d-ld-require-terms-acceptance-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Critical Path Tests › should show loading state" classname="critical-tests.spec.ts" time="5.66">
-<failure message="critical-tests.spec.ts:142:7 should show loading state" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:142:7 › Critical Path Tests › should show loading state ──────
+<testcase name="Session persists from saved state (reopen simulation)" classname="critical-tests.spec.ts" time="0.003">
+<failure message="critical-tests.spec.ts:144:5 Session persists from saved state (reopen simulation)" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:144:5 › Session persists from saved state (reopen simulation) 
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('[data-testid="terms-checkbox"]')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('[data-testid="terms-checkbox"]')
-
-
-      148 |     await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-      149 |     // Ensure checkbox is visible and interactable
-    > 150 |     await expect(page.locator('[data-testid="terms-checkbox"]')).toBeVisible({ timeout: 5000 });
-          |                                                                  ^
-      151 |     await page.check('[data-testid="terms-checkbox"]');
-      152 |
-      153 |     
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:150:66
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/error-context.md
+    Error: Error reading storage state from state.json:
+    ENOENT: no such file or directory, open 'state.json'
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/video.webm]]
-
-[[ATTACHMENT|test-results/critical-tests-Critical-Path-Tests-should-show-loading-state-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
 </testsuite>
 </testsuites>

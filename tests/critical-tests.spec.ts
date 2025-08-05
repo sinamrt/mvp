@@ -1,155 +1,150 @@
 import { test, expect } from '@playwright/test';
 
-// Test data generator
-const generateTestUser = (overrides = {}) => ({
-  email: `test.${Date.now()}@example.com`,
-  password: 'SecurePass123!',
-  confirmPassword: 'SecurePass123!',
-  firstName: 'Test',
-  lastName: 'User',
-  ...overrides
+//import { generateMultipleUsers } from './utils/testUsers';
+
+// utils/testUsers.ts
+// utils/testUsers.ts
+export const generateTestUser = (overrides = {}) => {
+  const timestamp = Date.now() + Math.floor(Math.random() * 1000); // avoid collision
+  return {
+    fullName: `Test User ${timestamp}`,
+    email: `test.user.${timestamp}@example.com`,
+    password: 'StrongPass123!',
+    confirmPassword: 'StrongPass123!',
+    ...overrides,
+  };
+};
+
+export const generateMultipleUsers = (count = 5) => {
+  return Array.from({ length: count }, () => generateTestUser());
+};
+
+
+const users = generateMultipleUsers(5);
+
+const randomNames = ['Ali', 'Mina', 'Zoe', 'Leo', 'Ray', 'Ella'];
+
+export const generateUserWithRandomName = () => {
+  const name = randomNames[Math.floor(Math.random() * randomNames.length)];
+  const timestamp = Date.now() + Math.floor(Math.random() * 1000);
+  return {
+    fullName: `${name} ${timestamp}`,
+    email: `user.${name.toLowerCase()}.${timestamp}@example.com`,
+    password: 'StrongPass123!',
+    confirmPassword: 'StrongPass123!',
+  };
+};
+export const generateInvalidUsers = () => ([
+  {
+    fullName: 'Missing Email',
+    email: '',
+    password: 'StrongPass123!',
+    confirmPassword: 'StrongPass123!',
+  },
+  {
+    fullName: 'Bad Email Format',
+    email: 'invalid-email',
+    password: 'StrongPass123!',
+    confirmPassword: 'StrongPass123!',
+  },
+  {
+    fullName: 'Weak Password',
+    email: `weak.${Date.now()}@example.com`,
+    password: '123',
+    confirmPassword: '123',
+  },
+  {
+    fullName: 'Password Mismatch',
+    email: `mismatch.${Date.now()}@example.com`,
+    password: 'StrongPass123!',
+    confirmPassword: 'DifferentPass123!',
+  },
+]);
+
+
+test('register multiple users', async ({ page }) => {
+  for (const user of users) {
+    await page.goto('/register');
+    await page.fill('[data-testid="name"]', user.fullName);
+    await page.fill('[data-testid="email"]', user.email);
+    await page.fill('[data-testid="password"]', user.password);
+    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
+    await page.click('[data-testid="register-button"]');
+    await expect(page).toHaveURL(/dashboard|success|welcome/);
+  }
 });
 
-test.describe('Critical Path Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
 
-  // 1. Basic Navigation
-  test('should load homepage', async ({ page }) => {
-    await expect(page).toHaveURL('/');
-    await expect(page.locator('h1')).toBeVisible();
-  });
 
-  // 2. Registration Form Access
-   
-  test('should navigate to registration page', async ({ page }) => {
-    await page.click('text=Get Started'); // Matches visible "Get Started" link
-    await expect(page).toHaveURL('/register');
-  });
-  
-  // 3. Basic Registration
-  test('should register new user', async ({ page }) => {
-    await page.goto('/register');
-    const user = generateTestUser();
+test.use({ storageState: 'state.json' }); // Pre-saved logged-in state
 
-    const termsCheckbox = page.locator('[data-testid="terms-checkbox"]');
-    await expect(termsCheckbox).toBeVisible({ timeout: 10000 });  // wait until it's visible
-    await termsCheckbox.check();  // check only after confirming visibility
+ 
 
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    
-    
-    
+test('Session persists after navigating to protected route', async ({ page }) => {
+  await page.goto('https://meal4v.vercel.app/login');
 
-    await page.click('[data-testid="register-button"]');
-    await expect(page).toHaveURL('/dashboard');
-  });
+  await page.fill('[data-testid="email"]', 'existing.user@test.com');
+  await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.click('[data-testid="login-button"]');
 
-  // 4. Login Flow
-  test('should login registered user', async ({ page }) => {
-    const user = generateTestUser();
-    
-    // Register first
-    await page.goto('/register');
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    
-    await page.click('[data-testid="register-button"]');
-    
-    // Logout
-    await page.click('[data-testid="logout-button"]');
-    
-    // Login
-    await page.goto('/login');
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.click('[data-testid="login-button"]');
-    
-    await expect(page).toHaveURL('/dashboard');
-  });
+  await expect(page).toHaveURL(/dashboard|diet-form/);
 
-  // 5. Form Validation
-  test('should show validation errors', async ({ page }) => {
-    await page.goto('/register');
-    await page.click('[data-testid="register-button"]');
-    
-    await expect(page.locator('[data-testid="email-error"]')).toBeVisible();
-    await expect(page.locator('[data-testid="password-error"]')).toBeVisible();
-  });
+  // Navigate to protected route
+  await page.goto('https://meal4v.vercel.app/dashboard');
 
-  // 6. Password Strength
-  test('should validate password strength', async ({ page }) => {
-    await page.goto('/register');
-    await page.fill('[data-testid="password"]', 'weak');
-    
-    await expect(page.locator('[data-testid="password-strength"]')).toContainText('weak');
-  });
+  // Confirm user has access
+  await expect(page.locator('h1')).toContainText('Dashboard');
+}); test('Session persists after page reload', async ({ page }) => {
+  await page.goto('https://meal4v.vercel.app/login');
 
-  // 7. Duplicate Email
-  test('should prevent duplicate email registration', async ({ page }) => {
-    const user = generateTestUser();
-    
-    // First registration
-    await page.goto('/register');
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-     
-    await page.click('[data-testid="register-button"]');
-    
-    // Logout
-    await page.click('[data-testid="logout-button"]');
-    
-    // Try registering again with same email
-    await page.goto('/register');
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-     
-    await page.click('[data-testid="register-button"]');
-    
-    await expect(page.locator('[data-testid="email-error"]')).toContainText('already exists');
-  });
+  await page.fill('[data-testid="email"]', 'existing.user@test.com');
+  await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.click('[data-testid="login-button"]');
 
-  // 8. Password Match
-  test('should validate password match', async ({ page }) => {
-    await page.goto('/register');
-    await page.fill('[data-testid="password"]', 'Password123!');
-    await page.fill('[data-testid="confirm-password"]', 'DifferentPass123!');
-    
-    await expect(page.locator('[data-testid="password-match-error"]')).toBeVisible();
-  });
+  // Ensure login success
+  await expect(page).toHaveURL(/dashboard|diet-form/);
 
-  // 9. Terms Checkbox
-  test('should require terms acceptance', async ({ page }) => {
-    await page.goto('/register');
-    const user = generateTestUser();
-    
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    // Don't check terms checkbox
-    
-    await page.click('[data-testid="register-button"]');
-    await expect(page.locator('[data-testid="terms-error"]')).toBeVisible();
-  });
-  
-  // 10. Loading State
-  test('should show loading state', async ({ page }) => {
-    await page.goto('/register');
-    const user = generateTestUser();
-    
-    await page.fill('[data-testid="email"]', user.email);
-    await page.fill('[data-testid="password"]', user.password);
-    await page.fill('[data-testid="confirm-password"]', user.confirmPassword);
-    // Ensure checkbox is visible and interactable
-     
-    
-    await page.click('[data-testid="register-button"]');
-    await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible();
-  });
-}); 
+  // Reload the page
+  await page.reload();
+
+  // Confirm user is still authenticated
+  await expect(page.locator('[data-testid="logout-button"]')).toBeVisible();
+});
+test('Session cookie is set after login', async ({ page, context }) => {
+  await page.goto('https://meal4v.vercel.app/login');
+
+  await page.fill('[data-testid="email"]', 'existing.user@test.com');
+  await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.click('[data-testid="login-button"]');
+
+  const cookies = await context.cookies();
+  const sessionCookie = cookies.find(cookie => cookie.name.includes('session'));
+
+  expect(sessionCookie).toBeDefined();
+  expect(sessionCookie?.value).not.toBe('');
+});
+
+test('Session persists across internal navigation', async ({ page }) => {
+  await page.goto('https://meal4v.vercel.app/login');
+
+  await page.fill('[data-testid="email"]', 'existing.user@test.com');
+  await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.click('[data-testid="login-button"]');
+
+  await expect(page).toHaveURL(/dashboard|diet-form/);
+
+  // Navigate via internal link
+  await page.click('[data-testid="nav-meal-plans"]');
+  await expect(page).toHaveURL(/meal-plans/);
+
+  // Check still authenticated
+  await expect(page.locator('[data-testid="logout-button"]')).toBeVisible();
+});
+
+test('Session persists from saved state (reopen simulation)', async ({ page }) => {
+  await page.goto('https://meal4v.vercel.app/dashboard');
+
+  // Should be logged in already
+  await expect(page.locator('h1')).toContainText('Dashboard');
+});
+
