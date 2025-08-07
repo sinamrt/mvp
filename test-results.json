@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 4
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -75,7 +75,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "register multiple users",
+          "title": "Session persists after reload",
           "ok": false,
           "tags": [],
           "tests": [
@@ -90,240 +90,50 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 9,
+                  "duration": 11207,
                   "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                    "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16",
+                    "location": {
+                      "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
+                      "column": 16,
+                      "line": 24
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[90m// 🔹 Click the login/register button\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[90m// 🔹 Optional: Wait for redirect or confirmation\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
+                      "location": {
+                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
+                        "column": 16,
+                        "line": 24
+                      },
+                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[90m// 🔹 Click the login/register button\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[90m// 🔹 Optional: Wait for redirect or confirmation\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
-                  "stderr": [],
+                  "stderr": [
+                    {
+                      "text": "❌ Test failed: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\u001b[22m\n\n    at \u001b[90m/Users/sina/Desktop/wollie_software/MVP/\u001b[39mtests/critical-tests.spec.ts:24:16 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  \u001b[32mSymbol(step)\u001b[39m: {\n    stepId: \u001b[32m'pw:api@10'\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts'\u001b[39m,\n      line: \u001b[33m24\u001b[39m,\n      column: \u001b[33m16\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m`Wait for selector locator('[data-testid=\"login-button\"]')`\u001b[39m,\n    apiName: \u001b[32m'page.waitForSelector'\u001b[39m,\n    params: { selector: \u001b[32m'[data-testid=\"login-button\"]'\u001b[39m, timeout: \u001b[33m10000\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@10'\u001b[39m,\n      skip: \u001b[36m[Function (anonymous)]\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754547077654\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m`\\x1B[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\\x1B[22m\\n`\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m`\\x1B[2m  - waiting for locator('[data-testid=\"login-button\"]') to be visible\\x1B[22m\\n`\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                    }
+                  ],
                   "retry": 0,
-                  "startTime": "2025-08-05T10:39:11.365Z",
+                  "startTime": "2025-08-07T06:11:06.541Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts",
+                    "column": 16,
+                    "line": 24
+                  }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "195d1d75331af2b541b4-0e474afa947c69284e69",
+          "id": "195d1d75331af2b541b4-2e66493ec9ec1a5c85db",
           "file": "critical-tests.spec.ts",
-          "line": 65,
-          "column": 5
-        },
-        {
-          "title": "Session persists after navigating to protected route",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "failed",
-                  "duration": 8,
-                  "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                  },
-                  "errors": [
-                    {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-05T10:39:11.329Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "195d1d75331af2b541b4-5f06dc8370e21f148a43",
-          "file": "critical-tests.spec.ts",
-          "line": 83,
-          "column": 5
-        },
-        {
-          "title": "Session persists after page reload",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "failed",
-                  "duration": 9,
-                  "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                  },
-                  "errors": [
-                    {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-05T10:39:11.334Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "195d1d75331af2b541b4-04d0a4cd3e8cf1e42ddf",
-          "file": "critical-tests.spec.ts",
-          "line": 97,
-          "column": 9
-        },
-        {
-          "title": "Session cookie is set after login",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "failed",
-                  "duration": 15,
-                  "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                  },
-                  "errors": [
-                    {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-05T10:39:11.329Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "195d1d75331af2b541b4-8bde485e9d285c11b981",
-          "file": "critical-tests.spec.ts",
-          "line": 113,
-          "column": 5
-        },
-        {
-          "title": "Session persists across internal navigation",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 1,
-                  "status": "failed",
-                  "duration": 3,
-                  "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                  },
-                  "errors": [
-                    {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-05T10:39:12.106Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "195d1d75331af2b541b4-80cd38b4727f56127471",
-          "file": "critical-tests.spec.ts",
-          "line": 127,
-          "column": 5
-        },
-        {
-          "title": "Session persists from saved state (reopen simulation)",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 3,
-                  "error": {
-                    "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'",
-                    "stack": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                  },
-                  "errors": [
-                    {
-                      "message": "Error: Error reading storage state from state.json:\nENOENT: no such file or directory, open 'state.json'"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-05T10:39:12.104Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "195d1d75331af2b541b4-5b6a43583c320a52eba3",
-          "file": "critical-tests.spec.ts",
-          "line": 144,
+          "line": 5,
           "column": 5
         }
       ]
@@ -331,11 +141,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-05T10:39:10.762Z",
-    "duration": 1532.71,
+    "startTime": "2025-08-07T06:11:06.065Z",
+    "duration": 11697.476,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 6,
+    "unexpected": 1,
     "flaky": 0
   }
 }

@@ -1,58 +1,68 @@
-<testsuites id="" name="" tests="6" failures="6" skipped="0" errors="0" time="1.53271">
-<testsuite name="critical-tests.spec.ts" timestamp="2025-08-05T10:39:10.944Z" hostname="chromium" tests="6" failures="6" skipped="0" time="0.047" errors="0">
-<testcase name="register multiple users" classname="critical-tests.spec.ts" time="0.009">
-<failure message="critical-tests.spec.ts:65:5 register multiple users" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:65:5 › register multiple users ───────────────────────────────
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="11.697476">
+<testsuite name="critical-tests.spec.ts" timestamp="2025-08-07T06:11:06.234Z" hostname="chromium" tests="1" failures="1" skipped="0" time="11.207" errors="0">
+<testcase name="Session persists after reload" classname="critical-tests.spec.ts" time="11.207">
+<failure message="critical-tests.spec.ts:5:5 Session persists after reload" type="FAILURE">
+<![CDATA[  [chromium] › critical-tests.spec.ts:5:5 › Session persists after reload ──────────────────────────
 
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
+    TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="login-button"]') to be visible
+
+
+      22 |
+      23 |     // 🔹 Click the login/register button
+    > 24 |     await page.waitForSelector('[data-testid="login-button"]', { timeout: 10000 });
+         |                ^
+      25 |     await page.click('[data-testid="login-button"]');
+      26 |
+      27 |     // 🔹 Optional: Wait for redirect or confirmation
+        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16
 ]]>
 </failure>
-</testcase>
-<testcase name="Session persists after navigating to protected route" classname="critical-tests.spec.ts" time="0.008">
-<failure message="critical-tests.spec.ts:83:5 Session persists after navigating to protected route" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:83:5 › Session persists after navigating to protected route ──
+<system-err>
+<![CDATA[❌ Test failed: page.waitForSelector: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-testid="login-button"]') to be visible[22m
 
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
+    at [90m/Users/sina/Desktop/wollie_software/MVP/[39mtests/critical-tests.spec.ts:24:16 {
+  name: [32m'TimeoutError'[39m,
+  [32mSymbol(step)[39m: {
+    stepId: [32m'pw:api@10'[39m,
+    location: {
+      file: [32m'/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts'[39m,
+      line: [33m24[39m,
+      column: [33m16[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m`Wait for selector locator('[data-testid="login-button"]')`[39m,
+    apiName: [32m'page.waitForSelector'[39m,
+    params: { selector: [32m'[data-testid="login-button"]'[39m, timeout: [33m10000[39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@10'[39m,
+      skip: [36m[Function (anonymous)][39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754547077654[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\n'[39m +
+        [32m'Call log:\n'[39m +
+        [32m`\x1B[2m  - waiting for locator('[data-testid="login-button"]') to be visible\x1B[22m\n`[39m,
+      stack: [32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\n'[39m +
+        [32m'Call log:\n'[39m +
+        [32m`\x1B[2m  - waiting for locator('[data-testid="login-button"]') to be visible\x1B[22m\n`[39m +
+        [32m'\n'[39m +
+        [32m'    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
 ]]>
-</failure>
-</testcase>
-<testcase name="Session persists after page reload" classname="critical-tests.spec.ts" time="0.009">
-<failure message="critical-tests.spec.ts:97:9 Session persists after page reload" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:97:9 › Session persists after page reload ────────────────────
-
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
-]]>
-</failure>
-</testcase>
-<testcase name="Session cookie is set after login" classname="critical-tests.spec.ts" time="0.015">
-<failure message="critical-tests.spec.ts:113:5 Session cookie is set after login" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:113:5 › Session cookie is set after login ────────────────────
-
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
-]]>
-</failure>
-</testcase>
-<testcase name="Session persists across internal navigation" classname="critical-tests.spec.ts" time="0.003">
-<failure message="critical-tests.spec.ts:127:5 Session persists across internal navigation" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:127:5 › Session persists across internal navigation ──────────
-
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
-]]>
-</failure>
-</testcase>
-<testcase name="Session persists from saved state (reopen simulation)" classname="critical-tests.spec.ts" time="0.003">
-<failure message="critical-tests.spec.ts:144:5 Session persists from saved state (reopen simulation)" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:144:5 › Session persists from saved state (reopen simulation) 
-
-    Error: Error reading storage state from state.json:
-    ENOENT: no such file or directory, open 'state.json'
-]]>
-</failure>
+</system-err>
 </testcase>
 </testsuite>
 </testsuites>
