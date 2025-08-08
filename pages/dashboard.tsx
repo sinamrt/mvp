@@ -1,4 +1,6 @@
 // pages/dashboard.tsx
+import type { NextRequest } from 'next/server';
+// pages/dashboard.tsx
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
@@ -6,8 +8,15 @@ export default function DashboardPage() {
   const router = useRouter();
 
   const handleLogout = useCallback(async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
-    router.push('/login');
+    try {
+      // Clear server-side session (cookie) then redirect
+      await fetch('/api/auth/logout', { method: 'POST' });
+      router.push('/login');
+    } catch (err) {
+      // Optional: surface an error UI if needed
+      console.error('Logout failed:', err);
+      router.push('/login');
+    }
   }, [router]);
 
   return (
@@ -16,6 +25,7 @@ export default function DashboardPage() {
         🎉 Welcome to your dashboard!
       </h1>
       <p className="text-gray-600 mb-6">You are now logged in.</p>
+
       <button
         data-testid="logout-button"
         onClick={handleLogout}
@@ -26,3 +36,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

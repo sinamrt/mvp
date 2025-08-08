@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/mL9t7f5-T42JYzOqZ24f-/_buildManifest.js",
-    "static/mL9t7f5-T42JYzOqZ24f-/_ssgManifest.js"
+    "static/pOlSsyY6GI8EIM-_ukkfK/_buildManifest.js",
+    "static/pOlSsyY6GI8EIM-_ukkfK/_ssgManifest.js"
   ],
   "rootMainFiles": [
     "static/chunks/webpack-5a0e1409aa74d27e.js",
@@ -54,7 +54,7 @@
       "static/chunks/webpack-5a0e1409aa74d27e.js",
       "static/chunks/framework-7c95b8e5103c9e90.js",
       "static/chunks/main-75c35f39304f133f.js",
-      "static/chunks/pages/dashboard-c042fc5ea5ea66cd.js"
+      "static/chunks/pages/dashboard-cebc03a41d974e1b.js"
     ],
     "/diet-form": [
       "static/chunks/webpack-5a0e1409aa74d27e.js",

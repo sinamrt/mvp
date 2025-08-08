@@ -76,7 +76,7 @@
       "specs": [
         {
           "title": "User can sign in and then sign out",
-          "ok": false,
+          "ok": true,
           "tags": [],
           "tests": [
             {
@@ -89,58 +89,18 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 11825,
-                  "error": {
-                    "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n",
-                    "stack": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:15:14",
-                    "location": {
-                      "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                      "column": 14,
-                      "line": 15
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 13 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"user-greeting\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/.*\\/login/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 18 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                        "column": 14,
-                        "line": 15
-                      },
-                      "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 13 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"user-greeting\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/.*\\/login/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 18 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:15:14\u001b[22m"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 3163,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-08T07:46:57.506Z",
+                  "startTime": "2025-08-08T07:57:11.851Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-User-can-sign-in-and-then-sign-out-chromium/test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-User-can-sign-in-and-then-sign-out-chromium/video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-User-can-sign-in-and-then-sign-out-chromium/error-context.md"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                    "column": 14,
-                    "line": 15
-                  }
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "febe308c913d374657d2-6fcb78625d1a547637d9",
@@ -150,7 +110,7 @@
         },
         {
           "title": "Session does not persist after sign out and reload",
-          "ok": false,
+          "ok": true,
           "tags": [],
           "tests": [
             {
@@ -163,58 +123,18 @@
                 {
                   "workerIndex": 1,
                   "parallelIndex": 1,
-                  "status": "failed",
-                  "duration": 6662,
-                  "error": {
-                    "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"logout-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n",
-                    "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"logout-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:27:65",
-                    "location": {
-                      "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                      "column": 65,
-                      "line": 27
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 25 |\u001b[39m   \n \u001b[90m 26 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 28 |\u001b[39m   \n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                        "column": 65,
-                        "line": 27
-                      },
-                      "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('[data-testid=\"logout-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 25 |\u001b[39m   \n \u001b[90m 26 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 28 |\u001b[39m   \n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:27:65\u001b[22m"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 3176,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-08T07:46:57.507Z",
+                  "startTime": "2025-08-08T07:57:11.861Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/error-context.md"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                    "column": 65,
-                    "line": 27
-                  }
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "febe308c913d374657d2-93efecaf5d8476179e19",
@@ -238,31 +158,31 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "failed",
-                  "duration": 11810,
+                  "duration": 8356,
                   "error": {
-                    "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n",
-                    "stack": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:45:16",
+                    "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/.*\\/login/\u001b[39m\nReceived string:  \u001b[31m\"https://meal4v.vercel.app/dashboard\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://meal4v.vercel.app/dashboard\"\u001b[22m\n",
+                    "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/.*\\/login/\u001b[39m\nReceived string:  \u001b[31m\"https://meal4v.vercel.app/dashboard\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://meal4v.vercel.app/dashboard\"\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:52:24",
                     "location": {
                       "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                      "column": 16,
-                      "line": 45
+                      "column": 24,
+                      "line": 52
                     },
-                    "snippet": "\u001b[0m \u001b[90m 43 |\u001b[39m   \n \u001b[90m 44 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m   \n \u001b[90m 48 |\u001b[39m     \u001b[90m// 🚫 Try to access dashboard directly\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 50 |\u001b[39m   \n \u001b[90m 51 |\u001b[39m     \u001b[90m// ✅ Should redirect or show \"not authorized\"\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 52 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/.*\\/login/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 53 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 54 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 55 |\u001b[39m   \u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                        "column": 16,
-                        "line": 45
+                        "column": 24,
+                        "line": 52
                       },
-                      "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 43 |\u001b[39m   \n \u001b[90m 44 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m   \n \u001b[90m 48 |\u001b[39m     \u001b[90m// 🚫 Try to access dashboard directly\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:45:16\u001b[22m"
+                      "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/.*\\/login/\u001b[39m\nReceived string:  \u001b[31m\"https://meal4v.vercel.app/dashboard\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://meal4v.vercel.app/dashboard\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 50 |\u001b[39m   \n \u001b[90m 51 |\u001b[39m     \u001b[90m// ✅ Should redirect or show \"not authorized\"\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 52 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/.*\\/login/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 53 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"login-button\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 54 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 55 |\u001b[39m   \u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:52:24\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-08T07:46:57.512Z",
+                  "startTime": "2025-08-08T07:57:11.849Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -283,8 +203,8 @@
                   ],
                   "errorLocation": {
                     "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                    "column": 16,
-                    "line": 45
+                    "column": 24,
+                    "line": 52
                   }
                 }
               ],
@@ -301,11 +221,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-08T07:46:56.988Z",
-    "duration": 12693.562,
-    "expected": 0,
+    "startTime": "2025-08-08T07:57:11.265Z",
+    "duration": 9303.534,
+    "expected": 2,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 1,
     "flaky": 0
   }
 }
