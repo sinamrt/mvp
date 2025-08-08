@@ -1,43 +1,6 @@
-<testsuites id="" name="" tests="3" failures="1" skipped="0" errors="0" time="11.487255000000001">
-<testsuite name="signout.spec.ts" timestamp="2025-08-08T11:25:03.138Z" hostname="chromium" tests="3" failures="1" skipped="0" time="17.814" errors="0">
-<testcase name="User can sign in and then sign out" classname="signout.spec.ts" time="3.591">
-</testcase>
-<testcase name="Session does not persist after sign out and reload" classname="signout.spec.ts" time="3.58">
-</testcase>
-<testcase name="Access to dashboard after logout is blocked" classname="signout.spec.ts" time="10.643">
-<failure message="signout.spec.ts:39:7 Access to dashboard after logout is blocked" type="FAILURE">
-<![CDATA[  [chromium] › signout.spec.ts:39:7 › Access to dashboard after logout is blocked ──────────────────
-
-    TimeoutError: page.click: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('[data-testid="logout-button"]')
-
-
-      39 |   test('Access to dashboard after logout is blocked', async ({ page }) => {
-      40 |       // tests/signout.spec.ts (fragment)
-    > 41 |   await page.click('[data-testid="logout-button"]');
-         |              ^
-      42 |   await page.waitForURL('**/login', { timeout: 10000 });
-      43 |
-      44 |   await page.goto('https://meal4v.vercel.app/dashboard');
-        at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:41:14
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/video.webm]]
-]]>
-</system-out>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.571332">
+<testsuite name="signout.spec.ts" timestamp="2025-08-08T11:32:23.932Z" hostname="chromium" tests="1" failures="0" skipped="0" time="3.86" errors="0">
+<testcase name="User can sign in and then sign out (UI-driven)" classname="signout.spec.ts" time="3.86">
 </testcase>
 </testsuite>
 </testsuites>

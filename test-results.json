@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 3
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -75,7 +75,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "User can sign in and then sign out",
+          "title": "User can sign in and then sign out (UI-driven)",
           "ok": true,
           "tags": [],
           "tests": [
@@ -90,12 +90,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3591,
+                  "duration": 3860,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-08T11:25:03.501Z",
+                  "startTime": "2025-08-08T11:32:24.239Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -103,124 +103,21 @@
               "status": "expected"
             }
           ],
-          "id": "febe308c913d374657d2-6fcb78625d1a547637d9",
+          "id": "febe308c913d374657d2-d10cacb08109f45ceae5",
           "file": "signout.spec.ts",
-          "line": 5,
+          "line": 4,
           "column": 5
-        },
-        {
-          "title": "Session does not persist after sign out and reload",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 3580,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-08T11:25:03.501Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "febe308c913d374657d2-93efecaf5d8476179e19",
-          "file": "signout.spec.ts",
-          "line": 19,
-          "column": 5
-        },
-        {
-          "title": "Access to dashboard after logout is blocked",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "failed",
-                  "duration": 10643,
-                  "error": {
-                    "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n",
-                    "stack": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:41:14",
-                    "location": {
-                      "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                      "column": 14,
-                      "line": 41
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 39 |\u001b[39m   test(\u001b[32m'Access to dashboard after logout is blocked'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 40 |\u001b[39m       \u001b[90m// tests/signout.spec.ts (fragment)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://meal4v.vercel.app/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                        "column": 14,
-                        "line": 41
-                      },
-                      "message": "TimeoutError: page.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"logout-button\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   test(\u001b[32m'Access to dashboard after logout is blocked'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 40 |\u001b[39m       \u001b[90m// tests/signout.spec.ts (fragment)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'[data-testid=\"logout-button\"]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/login'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://meal4v.vercel.app/dashboard'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:41:14\u001b[22m"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-08-08T11:25:03.501Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/video.webm"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
-                    "column": 14,
-                    "line": 41
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "febe308c913d374657d2-64841da3975ba7c27006",
-          "file": "signout.spec.ts",
-          "line": 39,
-          "column": 7
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-08T11:25:03.010Z",
-    "duration": 11487.255000000001,
-    "expected": 2,
+    "startTime": "2025-08-08T11:32:23.758Z",
+    "duration": 4571.332,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }
