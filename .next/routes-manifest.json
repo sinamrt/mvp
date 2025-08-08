@@ -81,19 +81,19 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/pOlSsyY6GI8EIM\\-_ukkfK/index\\.json$"
+      "dataRouteRegex": "^/_next/data/tNO2pcZaRyNR_STwgQdIR/index\\.json$"
     },
     {
       "page": "/admin",
-      "dataRouteRegex": "^/_next/data/pOlSsyY6GI8EIM\\-_ukkfK/admin\\.json$"
+      "dataRouteRegex": "^/_next/data/tNO2pcZaRyNR_STwgQdIR/admin\\.json$"
     },
     {
       "page": "/diet-form",
-      "dataRouteRegex": "^/_next/data/pOlSsyY6GI8EIM\\-_ukkfK/diet-form\\.json$"
+      "dataRouteRegex": "^/_next/data/tNO2pcZaRyNR_STwgQdIR/diet-form\\.json$"
     },
     {
       "page": "/register",
-      "dataRouteRegex": "^/_next/data/pOlSsyY6GI8EIM\\-_ukkfK/register\\.json$"
+      "dataRouteRegex": "^/_next/data/tNO2pcZaRyNR_STwgQdIR/register\\.json$"
     }
   ],
   "rsc": {

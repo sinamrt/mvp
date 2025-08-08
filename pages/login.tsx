@@ -1,7 +1,24 @@
 'use client'; // Use this if you're in `app/` directory
 
 import { useState } from 'react';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
+export  function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') return res.status(405).json({ message: 'Method Not Allowed' });
+
+  const { email, password } = req.body;
+
+  // Dummy login — replace with real check later
+  if (email === 'user@example.com' && password === 'SecurePass123!') {
+    // Set a simple session cookie for 1 hour
+    res.setHeader('Set-Cookie', [
+      `session=ok; Path=/; HttpOnly; SameSite=Lax; Max-Age=3600`,
+    ]);
+    return res.status(200).json({ success: true });
+  }
+
+  return res.status(401).json({ message: 'Invalid credentials' });
+}
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
