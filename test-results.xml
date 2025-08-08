@@ -1,68 +1,126 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="11.697476">
-<testsuite name="critical-tests.spec.ts" timestamp="2025-08-07T06:11:06.234Z" hostname="chromium" tests="1" failures="1" skipped="0" time="11.207" errors="0">
-<testcase name="Session persists after reload" classname="critical-tests.spec.ts" time="11.207">
-<failure message="critical-tests.spec.ts:5:5 Session persists after reload" type="FAILURE">
-<![CDATA[  [chromium] › critical-tests.spec.ts:5:5 › Session persists after reload ──────────────────────────
+<testsuites id="" name="" tests="3" failures="3" skipped="0" errors="0" time="12.693562">
+<testsuite name="signout.spec.ts" timestamp="2025-08-08T07:46:57.111Z" hostname="chromium" tests="3" failures="3" skipped="0" time="30.297" errors="0">
+<testcase name="User can sign in and then sign out" classname="signout.spec.ts" time="11.825">
+<failure message="signout.spec.ts:5:5 User can sign in and then sign out" type="FAILURE">
+<![CDATA[  [chromium] › signout.spec.ts:5:5 › User can sign in and then sign out ────────────────────────────
 
-    TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.
+    TimeoutError: page.click: Timeout 10000ms exceeded.
     Call log:
-      - waiting for locator('[data-testid="login-button"]') to be visible
+      - waiting for locator('[data-testid="logout-button"]')
 
 
-      22 |
-      23 |     // 🔹 Click the login/register button
-    > 24 |     await page.waitForSelector('[data-testid="login-button"]', { timeout: 10000 });
-         |                ^
-      25 |     await page.click('[data-testid="login-button"]');
-      26 |
-      27 |     // 🔹 Optional: Wait for redirect or confirmation
-        at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16
+      13 |   await expect(page.locator('[data-testid="user-greeting"]')).toBeVisible();
+      14 |
+    > 15 |   await page.click('[data-testid="logout-button"]');
+         |              ^
+      16 |   await page.waitForURL('**/login');
+      17 |   await expect(page).toHaveURL(/.*\/login/);
+      18 | });
+        at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:15:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/signout-User-can-sign-in-and-then-sign-out-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/signout-User-can-sign-in-and-then-sign-out-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/signout-User-can-sign-in-and-then-sign-out-chromium/error-context.md
 ]]>
 </failure>
-<system-err>
-<![CDATA[❌ Test failed: page.waitForSelector: Timeout 10000ms exceeded.
-Call log:
-[2m  - waiting for locator('[data-testid="login-button"]') to be visible[22m
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/signout-User-can-sign-in-and-then-sign-out-chromium/test-failed-1.png]]
 
-    at [90m/Users/sina/Desktop/wollie_software/MVP/[39mtests/critical-tests.spec.ts:24:16 {
-  name: [32m'TimeoutError'[39m,
-  [32mSymbol(step)[39m: {
-    stepId: [32m'pw:api@10'[39m,
-    location: {
-      file: [32m'/Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts'[39m,
-      line: [33m24[39m,
-      column: [33m16[39m
-    },
-    category: [32m'pw:api'[39m,
-    title: [32m`Wait for selector locator('[data-testid="login-button"]')`[39m,
-    apiName: [32m'page.waitForSelector'[39m,
-    params: { selector: [32m'[data-testid="login-button"]'[39m, timeout: [33m10000[39m },
-    boxedStack: [90mundefined[39m,
-    steps: [],
-    attachmentIndices: [],
-    info: TestStepInfoImpl {
-      annotations: [],
-      _testInfo: [36m[TestInfoImpl][39m,
-      _stepId: [32m'pw:api@10'[39m,
-      skip: [36m[Function (anonymous)][39m
-    },
-    complete: [36m[Function: complete][39m,
-    endWallTime: [33m1754547077654[39m,
-    error: {
-      message: [32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\n'[39m +
-        [32m'Call log:\n'[39m +
-        [32m`\x1B[2m  - waiting for locator('[data-testid="login-button"]') to be visible\x1B[22m\n`[39m,
-      stack: [32m'TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\n'[39m +
-        [32m'Call log:\n'[39m +
-        [32m`\x1B[2m  - waiting for locator('[data-testid="login-button"]') to be visible\x1B[22m\n`[39m +
-        [32m'\n'[39m +
-        [32m'    at /Users/sina/Desktop/wollie_software/MVP/tests/critical-tests.spec.ts:24:16'[39m,
-      cause: [90mundefined[39m
-    }
-  }
-}
+[[ATTACHMENT|test-results/signout-User-can-sign-in-and-then-sign-out-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/signout-User-can-sign-in-and-then-sign-out-chromium/error-context.md]]
 ]]>
-</system-err>
+</system-out>
+</testcase>
+<testcase name="Session does not persist after sign out and reload" classname="signout.spec.ts" time="6.662">
+<failure message="signout.spec.ts:19:5 Session does not persist after sign out and reload" type="FAILURE">
+<![CDATA[  [chromium] › signout.spec.ts:19:5 › Session does not persist after sign out and reload ───────────
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+    Locator: locator('[data-testid="logout-button"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      25 |   
+      26 |     await page.waitForURL('**/dashboard');
+    > 27 |     await expect(page.locator('[data-testid="logout-button"]')).toBeVisible();
+         |                                                                 ^
+      28 |   
+      29 |     await page.click('[data-testid="logout-button"]');
+      30 |     await page.waitForURL('**/login');
+        at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:27:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/signout-Session-does-not-persist-after-sign-out-and-reload-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Access to dashboard after logout is blocked" classname="signout.spec.ts" time="11.81">
+<failure message="signout.spec.ts:37:7 Access to dashboard after logout is blocked" type="FAILURE">
+<![CDATA[  [chromium] › signout.spec.ts:37:7 › Access to dashboard after logout is blocked ──────────────────
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      43 |   
+      44 |     await page.waitForURL('**/dashboard');
+    > 45 |     await page.click('[data-testid="logout-button"]');
+         |                ^
+      46 |     await page.waitForURL('**/login');
+      47 |   
+      48 |     // 🚫 Try to access dashboard directly
+        at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:45:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/signout-Access-to-dashboard-after-logout-is-blocked-chromium/error-context.md]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

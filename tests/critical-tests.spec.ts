@@ -2,53 +2,70 @@
 
 import { test, expect, chromium } from '@playwright/test';
 
+// test('Session persists after reload', async () => {
+//   const browser = await chromium.launch();
+//   const context = await browser.newContext();
+
+//   const page = await context.newPage();
+
+//   try {
+//     // 🔹 Navigate to the registration page
+//     await page.goto('https://meal4v.vercel.app/register', { waitUntil: 'load' });
+
+//     // 🔹 Wait and fill email
+//     await page.waitForSelector('[data-testid="email"]', { timeout: 10000 });
+//     await page.fill('[data-testid="email"]', 'user@example.com');
+
+//     // 🔹 Wait and fill password
+//     await page.waitForSelector('[data-testid="password"]', { timeout: 10000 });
+//     await page.fill('[data-testid="password"]', 'SecurePass123!');
+
+//     // 🔹 Click the login/register button
+//     await page.waitForSelector('[data-testid="login-button"]', { timeout: 10000 });
+//     await page.click('[data-testid="login-button"]');
+
+//     // 🔹 Optional: Wait for redirect or confirmation
+//     await page.waitForLoadState('networkidle');
+//     await page.waitForTimeout(2000); // buffer for any redirects
+
+//     // 🔹 Save session state
+//     const storageState = await context.storageState();
+//     console.log('✅ Session created. Storage state captured.');
+
+//     // 🔹 Reload the page
+//     await page.reload({ waitUntil: 'load' });
+
+//     // 🔹 Validate session still exists
+//     const sessionCookie = storageState.cookies.find(cookie => cookie.name === 'next-auth.session-token');
+//     expect(sessionCookie).toBeDefined();
+//     console.log('✅ Session persisted after reload.');
+
+//   } catch (e) {
+//     console.error('❌ Test failed:', e);
+//     await page.screenshot({ path: 'error-session-reload.png' });
+//     throw e;
+//   } finally {
+//     await browser.close();
+//   }
+// });
+
 test('Session persists after reload', async () => {
   const browser = await chromium.launch();
   const context = await browser.newContext();
-
   const page = await context.newPage();
 
-  try {
-    // 🔹 Navigate to the registration page
-    await page.goto('https://meal4v.vercel.app/register', { waitUntil: 'load' });
+  await page.goto('https://meal4v.vercel.app/login');
 
-    // 🔹 Wait and fill email
-    await page.waitForSelector('[data-testid="email"]', { timeout: 10000 });
-    await page.fill('[data-testid="email"]', 'user@example.com');
+  await page.fill('[data-testid="email"]', 'user@example.com');
+  await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.click('[data-testid="login-button"]');
 
-    // 🔹 Wait and fill password
-    await page.waitForSelector('[data-testid="password"]', { timeout: 10000 });
-    await page.fill('[data-testid="password"]', 'SecurePass123!');
+  await page.waitForURL('**/dashboard', { timeout: 5000 });
+  await page.reload();
+  await expect(page.locator('[data-testid="user-greeting"]')).toBeVisible();
 
-    // 🔹 Click the login/register button
-    await page.waitForSelector('[data-testid="login-button"]', { timeout: 10000 });
-    await page.click('[data-testid="login-button"]');
-
-    // 🔹 Optional: Wait for redirect or confirmation
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(2000); // buffer for any redirects
-
-    // 🔹 Save session state
-    const storageState = await context.storageState();
-    console.log('✅ Session created. Storage state captured.');
-
-    // 🔹 Reload the page
-    await page.reload({ waitUntil: 'load' });
-
-    // 🔹 Validate session still exists
-    const sessionCookie = storageState.cookies.find(cookie => cookie.name === 'next-auth.session-token');
-    expect(sessionCookie).toBeDefined();
-    console.log('✅ Session persisted after reload.');
-
-  } catch (e) {
-    console.error('❌ Test failed:', e);
-    await page.screenshot({ path: 'error-session-reload.png' });
-    throw e;
-  } finally {
-    await browser.close();
-  }
+  await browser.close();
 });
-
 
 // import { test, expect } from '@playwright/test';
 // import { chromium } from '@playwright/test';
