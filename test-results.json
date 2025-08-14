@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 2
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "chromium",
         "name": "chromium",
@@ -75,7 +75,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "User can sign in and then sign out (UI-driven)",
+          "title": "API logout clears session and dashboard is blocked",
           "ok": true,
           "tags": [],
           "tests": [
@@ -90,12 +90,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3860,
+                  "duration": 5653,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-08T11:32:24.239Z",
+                  "startTime": "2025-08-13T07:42:26.749Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -103,9 +103,78 @@
               "status": "expected"
             }
           ],
-          "id": "febe308c913d374657d2-d10cacb08109f45ceae5",
+          "id": "febe308c913d374657d2-ca512f93c8785045b8e5",
           "file": "signout.spec.ts",
           "line": 4,
+          "column": 5
+        },
+        {
+          "title": "sign out flow",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 268,
+                  "error": {
+                    "message": "ReferenceError: uiLogin is not defined",
+                    "stack": "ReferenceError: uiLogin is not defined\n    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:40:3",
+                    "location": {
+                      "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
+                      "column": 3,
+                      "line": 40
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[90m// await registerUserViaApi(user); // <- your project helper\u001b[39m\n \u001b[90m 39 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   \u001b[36mawait\u001b[39m uiLogin(page\u001b[33m,\u001b[39m user)\u001b[33m;\u001b[39m \u001b[90m// ✅ pass creds explicitly\u001b[39m\n \u001b[90m    |\u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   \u001b[90m// ... continue with the sign-out assertions\u001b[39m\n \u001b[90m 42 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
+                        "column": 3,
+                        "line": 40
+                      },
+                      "message": "ReferenceError: uiLogin is not defined\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[90m// await registerUserViaApi(user); // <- your project helper\u001b[39m\n \u001b[90m 39 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   \u001b[36mawait\u001b[39m uiLogin(page\u001b[33m,\u001b[39m user)\u001b[33m;\u001b[39m \u001b[90m// ✅ pass creds explicitly\u001b[39m\n \u001b[90m    |\u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   \u001b[90m// ... continue with the sign-out assertions\u001b[39m\n \u001b[90m 42 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:40:3\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-13T07:42:26.747Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-sign-out-flow-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/sina/Desktop/wollie_software/MVP/test-results/signout-sign-out-flow-chromium/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts",
+                    "column": 3,
+                    "line": 40
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "febe308c913d374657d2-0d93f48791043be7f4e0",
+          "file": "signout.spec.ts",
+          "line": 33,
           "column": 5
         }
       ]
@@ -113,11 +182,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-08T11:32:23.758Z",
-    "duration": 4571.332,
+    "startTime": "2025-08-13T07:42:26.142Z",
+    "duration": 6535.496,
     "expected": 1,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

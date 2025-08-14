@@ -1,6 +1,38 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.571332">
-<testsuite name="signout.spec.ts" timestamp="2025-08-08T11:32:23.932Z" hostname="chromium" tests="1" failures="0" skipped="0" time="3.86" errors="0">
-<testcase name="User can sign in and then sign out (UI-driven)" classname="signout.spec.ts" time="3.86">
+<testsuites id="" name="" tests="2" failures="1" skipped="0" errors="0" time="6.535496">
+<testsuite name="signout.spec.ts" timestamp="2025-08-13T07:42:26.303Z" hostname="chromium" tests="2" failures="1" skipped="0" time="5.921" errors="0">
+<testcase name="API logout clears session and dashboard is blocked" classname="signout.spec.ts" time="5.653">
+</testcase>
+<testcase name="sign out flow" classname="signout.spec.ts" time="0.268">
+<failure message="signout.spec.ts:33:5 sign out flow" type="FAILURE">
+<![CDATA[  [chromium] › signout.spec.ts:33:5 › sign out flow ────────────────────────────────────────────────
+
+    ReferenceError: uiLogin is not defined
+
+      38 |   // await registerUserViaApi(user); // <- your project helper
+      39 |
+    > 40 |   await uiLogin(page, user); // ✅ pass creds explicitly
+         |   ^
+      41 |   // ... continue with the sign-out assertions
+      42 | });
+      43 |
+        at /Users/sina/Desktop/wollie_software/MVP/tests/signout.spec.ts:40:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/signout-sign-out-flow-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/signout-sign-out-flow-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/signout-sign-out-flow-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/signout-sign-out-flow-chromium/video.webm]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
