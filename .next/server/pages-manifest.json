@@ -1,19 +1,7 @@
 {
-  "/_app": "pages/_app.js",
-  "/api/auth/login": "pages/api/auth/login.js",
-  "/api/places": "pages/api/places.js",
-  "/api/auth/logout": "pages/api/auth/logout.js",
-  "/api/test-db": "pages/api/test-db.js",
-  "/api/verify-db": "pages/api/verify-db.js",
-  "/auth/error": "pages/auth/error.html",
-  "/login": "pages/login.html",
-  "/dashboard": "pages/dashboard.html",
-  "/admin": "pages/admin.js",
-  "/diet-form": "pages/diet-form.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/_error": "pages/_error.js",
-  "/register": "pages/register.js",
   "/": "pages/index.js",
+  "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/login": "pages/login.js"
 }
