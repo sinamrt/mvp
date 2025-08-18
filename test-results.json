@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -69,20 +69,20 @@
   },
   "suites": [
     {
-      "title": "api/api-tst.spec.ts",
-      "file": "api/api-tst.spec.ts",
+      "title": "auth.spec.ts",
+      "file": "auth.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
           "title": "Auth API contract",
-          "file": "api/api-tst.spec.ts",
-          "line": 6,
+          "file": "auth.spec.ts",
+          "line": 10,
           "column": 6,
           "specs": [
             {
-              "title": "register => 201 or 400 if exists",
+              "title": "register + login flow",
               "ok": false,
               "tags": [],
               "tests": [
@@ -97,104 +97,30 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 136,
+                      "duration": 0,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m405\u001b[39m\nReceived array: \u001b[31m[201, 200, 400]\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m405\u001b[39m\nReceived array: \u001b[31m[201, 200, 400]\u001b[39m\n    at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:18:29",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                          "column": 29,
-                          "line": 18
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 16 |\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[90m// Accept either \"created\" or \"already exists\" as valid contract outcomes\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 18 |\u001b[39m     expect([\u001b[35m201\u001b[39m\u001b[33m,\u001b[39m \u001b[35m200\u001b[39m\u001b[33m,\u001b[39m \u001b[35m400\u001b[39m])\u001b[33m.\u001b[39mtoContain(res\u001b[33m.\u001b[39mstatus())\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mif\u001b[39m (res\u001b[33m.\u001b[39mstatus() \u001b[33m===\u001b[39m \u001b[35m400\u001b[39m) {\n \u001b[90m 20 |\u001b[39m       \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 21 |\u001b[39m       expect(body\u001b[33m.\u001b[39merror \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m body\u001b[33m.\u001b[39mmessage)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/exists/i\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                        "message": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead.",
+                        "stack": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead."
                       },
                       "errors": [
                         {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                            "column": 29,
-                            "line": 18
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m405\u001b[39m\nReceived array: \u001b[31m[201, 200, 400]\u001b[39m\n\n\u001b[0m \u001b[90m 16 |\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[90m// Accept either \"created\" or \"already exists\" as valid contract outcomes\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 18 |\u001b[39m     expect([\u001b[35m201\u001b[39m\u001b[33m,\u001b[39m \u001b[35m200\u001b[39m\u001b[33m,\u001b[39m \u001b[35m400\u001b[39m])\u001b[33m.\u001b[39mtoContain(res\u001b[33m.\u001b[39mstatus())\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mif\u001b[39m (res\u001b[33m.\u001b[39mstatus() \u001b[33m===\u001b[39m \u001b[35m400\u001b[39m) {\n \u001b[90m 20 |\u001b[39m       \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 21 |\u001b[39m       expect(body\u001b[33m.\u001b[39merror \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m body\u001b[33m.\u001b[39mmessage)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/exists/i\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:18:29\u001b[22m"
+                          "message": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead."
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-18T07:58:33.727Z",
+                      "startTime": "2025-08-18T09:25:38.614Z",
                       "annotations": [],
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                        "column": 29,
-                        "line": 18
-                      }
+                      "attachments": []
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "f5a506507a84a0bb4354-64c109cbb890dda020e9",
-              "file": "api/api-tst.spec.ts",
-              "line": 7,
-              "column": 7
-            },
-            {
-              "title": "login valid => 200; invalid => 401",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 132,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m405\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m405\u001b[39m\n    at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:32:25",
-                        "location": {
-                          "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                          "column": 25,
-                          "line": 32
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 30 |\u001b[39m       data\u001b[33m:\u001b[39m { email\u001b[33m:\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mTEST_EMAIL\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mTEST_PASSWORD\u001b[39m }\n \u001b[90m 31 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m     expect(ok\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 |\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[90m// invalid\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mconst\u001b[39m bad \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m api\u001b[33m.\u001b[39mpost(\u001b[32m'/api/auth/login'\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                            "column": 25,
-                            "line": 32
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m405\u001b[39m\n\n\u001b[0m \u001b[90m 30 |\u001b[39m       data\u001b[33m:\u001b[39m { email\u001b[33m:\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mTEST_EMAIL\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mTEST_PASSWORD\u001b[39m }\n \u001b[90m 31 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m     expect(ok\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 |\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[90m// invalid\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mconst\u001b[39m bad \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m api\u001b[33m.\u001b[39mpost(\u001b[32m'/api/auth/login'\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:32:25\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-18T07:58:33.731Z",
-                      "annotations": [],
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "/Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts",
-                        "column": 25,
-                        "line": 32
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "f5a506507a84a0bb4354-68c68a9f2956c8956caa",
-              "file": "api/api-tst.spec.ts",
-              "line": 25,
+              "id": "d748ac400d08b85935ef-9154d72d2d397b1ccb49",
+              "file": "auth.spec.ts",
+              "line": 14,
               "column": 7
             }
           ]
@@ -204,11 +130,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-18T07:58:30.146Z",
-    "duration": 3732.6200000000003,
+    "startTime": "2025-08-18T09:25:38.134Z",
+    "duration": 897.522,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 2,
+    "unexpected": 1,
     "flaky": 0
   }
 }

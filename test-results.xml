@@ -1,42 +1,12 @@
-<testsuites id="" name="" tests="2" failures="2" skipped="0" errors="0" time="3.7326200000000003">
-<testsuite name="api/api-tst.spec.ts" timestamp="2025-08-18T07:58:33.370Z" hostname="chromium" tests="2" failures="2" skipped="0" time="0.268" errors="0">
-<testcase name="Auth API contract › register =&gt; 201 or 400 if exists" classname="api/api-tst.spec.ts" time="0.136">
-<failure message="api-tst.spec.ts:7:7 register =&gt; 201 or 400 if exists" type="FAILURE">
-<![CDATA[  [chromium] › api/api-tst.spec.ts:7:7 › Auth API contract › register => 201 or 400 if exists ──────
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="0.897522">
+<testsuite name="auth.spec.ts" timestamp="2025-08-18T09:25:38.299Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0" errors="0">
+<testcase name="Auth API contract › register + login flow" classname="auth.spec.ts" time="0">
+<failure message="auth.spec.ts:14:7 register + login flow" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:14:7 › Auth API contract › register + login flow ───────────────────────
 
-    Error: expect(received).toContain(expected) // indexOf
-
-    Expected value: 405
-    Received array: [201, 200, 400]
-
-      16 |
-      17 |     // Accept either "created" or "already exists" as valid contract outcomes
-    > 18 |     expect([201, 200, 400]).toContain(res.status());
-         |                             ^
-      19 |     if (res.status() === 400) {
-      20 |       const body = await res.json();
-      21 |       expect(body.error ?? body.message).toMatch(/exists/i);
-        at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:18:29
-]]>
-</failure>
-</testcase>
-<testcase name="Auth API contract › login valid =&gt; 200; invalid =&gt; 401" classname="api/api-tst.spec.ts" time="0.132">
-<failure message="api-tst.spec.ts:25:7 login valid =&gt; 200; invalid =&gt; 401" type="FAILURE">
-<![CDATA[  [chromium] › api/api-tst.spec.ts:25:7 › Auth API contract › login valid => 200; invalid => 401 ───
-
-    Error: expect(received).toBe(expected) // Object.is equality
-
-    Expected: 200
-    Received: 405
-
-      30 |       data: { email: process.env.TEST_EMAIL, password: process.env.TEST_PASSWORD }
-      31 |     });
-    > 32 |     expect(ok.status()).toBe(200);
-         |                         ^
-      33 |
-      34 |     // invalid
-      35 |     const bad = await api.post('/api/auth/login', {
-        at /Users/sina/Desktop/wollie_software/MVP/tests/api/api-tst.spec.ts:32:25
+    Error: "context" and "page" fixtures are not supported in "beforeAll" since they are created on a per-test basis.
+    If you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.
+    If you would like to configure your page before each test, do that in beforeEach hook instead.
 ]]>
 </failure>
 </testcase>

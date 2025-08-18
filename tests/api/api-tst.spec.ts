@@ -1,7 +1,7 @@
 // tests/api.auth.spec.ts
 import { test, expect, request } from '@playwright/test';
 
-const BASE = process.env.BASE_URL ?? 'https://your-app.vercel.app';
+const BASE = process.env.BASE_URL ?? 'https://meal4v.vercel.app';
 
 test.describe('Auth API contract', () => {
   test('register => 201 or 400 if exists', async ({}) => {
