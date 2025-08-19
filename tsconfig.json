@@ -31,6 +31,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "types/**/*.ts",
     "**/*.tsx",
     "playwright.config.ts",
     ".next/types/**/*.ts"
