@@ -69,21 +69,21 @@
   },
   "suites": [
     {
-      "title": "auth.spec.ts",
-      "file": "auth.spec.ts",
+      "title": "api/auth.spec.ts",
+      "file": "api/auth.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
           "title": "Auth API contract",
-          "file": "auth.spec.ts",
+          "file": "api/auth.spec.ts",
           "line": 10,
           "column": 6,
           "specs": [
             {
               "title": "register + login flow",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -96,31 +96,23 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 0,
-                      "error": {
-                        "message": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead.",
-                        "stack": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead."
-                      },
-                      "errors": [
-                        {
-                          "message": "Error: \"context\" and \"page\" fixtures are not supported in \"beforeAll\" since they are created on a per-test basis.\nIf you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.\nIf you would like to configure your page before each test, do that in beforeEach hook instead."
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 688,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-18T09:25:38.614Z",
+                      "startTime": "2025-08-18T09:35:09.411Z",
                       "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "d748ac400d08b85935ef-9154d72d2d397b1ccb49",
-              "file": "auth.spec.ts",
-              "line": 14,
+              "id": "6bead371ebbc451c1152-9328cef83810df627f8e",
+              "file": "api/auth.spec.ts",
+              "line": 11,
               "column": 7
             }
           ]
@@ -130,11 +122,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-18T09:25:38.134Z",
-    "duration": 897.522,
-    "expected": 0,
+    "startTime": "2025-08-18T09:35:08.918Z",
+    "duration": 1465.969,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

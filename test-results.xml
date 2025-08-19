@@ -1,14 +1,6 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="0.897522">
-<testsuite name="auth.spec.ts" timestamp="2025-08-18T09:25:38.299Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0" errors="0">
-<testcase name="Auth API contract › register + login flow" classname="auth.spec.ts" time="0">
-<failure message="auth.spec.ts:14:7 register + login flow" type="FAILURE">
-<![CDATA[  [chromium] › auth.spec.ts:14:7 › Auth API contract › register + login flow ───────────────────────
-
-    Error: "context" and "page" fixtures are not supported in "beforeAll" since they are created on a per-test basis.
-    If you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.
-    If you would like to configure your page before each test, do that in beforeEach hook instead.
-]]>
-</failure>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="1.465969">
+<testsuite name="api/auth.spec.ts" timestamp="2025-08-18T09:35:09.096Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.688" errors="0">
+<testcase name="Auth API contract › register + login flow" classname="api/auth.spec.ts" time="0.688">
 </testcase>
 </testsuite>
 </testsuites>
