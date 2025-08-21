@@ -81,15 +81,15 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/lRFBzVGgmO3deMvcJcnGh/index\\.json$"
+      "dataRouteRegex": "^/_next/data/c1QVQ_sr048LTF9pg\\-0wP/index\\.json$"
     },
     {
       "page": "/admin",
-      "dataRouteRegex": "^/_next/data/lRFBzVGgmO3deMvcJcnGh/admin\\.json$"
+      "dataRouteRegex": "^/_next/data/c1QVQ_sr048LTF9pg\\-0wP/admin\\.json$"
     },
     {
       "page": "/diet-form",
-      "dataRouteRegex": "^/_next/data/lRFBzVGgmO3deMvcJcnGh/diet-form\\.json$"
+      "dataRouteRegex": "^/_next/data/c1QVQ_sr048LTF9pg\\-0wP/diet-form\\.json$"
     }
   ],
   "rsc": {
