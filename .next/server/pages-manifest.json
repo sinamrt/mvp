@@ -1,19 +1,19 @@
 {
   "/_app": "pages/_app.js",
-  "/api/auth/login": "pages/api/auth/login.js",
+  "/_error": "pages/_error.js",
   "/api/auth/logout": "pages/api/auth/logout.js",
-  "/api/verify-db": "pages/api/verify-db.js",
   "/api/places": "pages/api/places.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/api/verify-db": "pages/api/verify-db.js",
   "/auth/error": "pages/auth/error.js",
   "/api/test-db": "pages/api/test-db.js",
-  "/dashboard": "pages/dashboard.js",
-  "/login": "pages/login.js",
   "/register": "pages/register.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/dashboard": "pages/dashboard.js",
+  "/login": "pages/login.js",
   "/api/auth/register": "pages/api/auth/register.js",
   "/admin": "pages/admin.js",
-  "/_error": "pages/_error.js",
-  "/diet-form": "pages/diet-form.js",
   "/": "pages/index.js",
-  "/_document": "pages/_document.js"
+  "/_document": "pages/_document.js",
+  "/diet-form": "pages/diet-form.js"
 }
