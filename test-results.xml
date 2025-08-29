@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="1.465969">
-<testsuite name="api/auth.spec.ts" timestamp="2025-08-18T09:35:09.096Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.688" errors="0">
-<testcase name="Auth API contract › register + login flow" classname="api/auth.spec.ts" time="0.688">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.395433">
+<testsuite name="oauth-google.spec.ts" timestamp="2025-08-29T01:53:09.473Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.489" errors="0">
+<testcase name="Google OAuth redirect URI › has correct redirect_uri in Google auth request" classname="oauth-google.spec.ts" time="1.489">
 </testcase>
 </testsuite>
 </testsuites>

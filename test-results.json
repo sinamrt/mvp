@@ -69,20 +69,20 @@
   },
   "suites": [
     {
-      "title": "api/auth.spec.ts",
-      "file": "api/auth.spec.ts",
+      "title": "oauth-google.spec.ts",
+      "file": "oauth-google.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Auth API contract",
-          "file": "api/auth.spec.ts",
-          "line": 10,
+          "title": "Google OAuth redirect URI",
+          "file": "oauth-google.spec.ts",
+          "line": 9,
           "column": 6,
           "specs": [
             {
-              "title": "register + login flow",
+              "title": "has correct redirect_uri in Google auth request",
               "ok": true,
               "tags": [],
               "tests": [
@@ -97,12 +97,18 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 688,
+                      "duration": 1489,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-18T09:35:09.411Z",
+                      "steps": [
+                        {
+                          "title": "Expect \"Did not see Google OAuth request\"",
+                          "duration": 857
+                        }
+                      ],
+                      "startTime": "2025-08-29T01:53:09.771Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -110,9 +116,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "6bead371ebbc451c1152-9328cef83810df627f8e",
-              "file": "api/auth.spec.ts",
-              "line": 11,
+              "id": "81b9f4b50c119f4bf0cc-89e22513b14c2988c1d3",
+              "file": "oauth-google.spec.ts",
+              "line": 10,
               "column": 7
             }
           ]
@@ -122,8 +128,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-18T09:35:08.918Z",
-    "duration": 1465.969,
+    "startTime": "2025-08-29T01:53:09.263Z",
+    "duration": 3395.433,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

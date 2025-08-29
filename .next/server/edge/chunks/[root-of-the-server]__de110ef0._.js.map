@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 21, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/middleware.ts"],"sourcesContent":["// middleware.ts\nimport { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\n\nexport function middleware(req: NextRequest) {\n  const { pathname } = req.nextUrl;\n  const session = req.cookies.get('session')?.value;\n\n  // Protect /dashboard (and any subpaths) if there is no session cookie\n  if (pathname.startsWith('/dashboard') && !session) {\n    const url = req.nextUrl.clone();\n    url.pathname = '/login';\n    return NextResponse.redirect(url);\n  }\n\n  return NextResponse.next();\n}\n\n// Only run middleware for these routes\nexport const config = {\n  matcher: ['/dashboard/:path*'],\n};\n"],"names":[],"mappings":"AAAA,gBAAgB;;;;;AAChB;AAAA;;AAGO,SAAS,WAAW,GAAgB;IACzC,MAAM,EAAE,QAAQ,EAAE,GAAG,IAAI,OAAO;IAChC,MAAM,UAAU,IAAI,OAAO,CAAC,GAAG,CAAC,YAAY;IAE5C,sEAAsE;IACtE,IAAI,SAAS,UAAU,CAAC,iBAAiB,CAAC,SAAS;QACjD,MAAM,MAAM,IAAI,OAAO,CAAC,KAAK;QAC7B,IAAI,QAAQ,GAAG;QACf,OAAO,6LAAA,CAAA,eAAY,CAAC,QAAQ,CAAC;IAC/B;IAEA,OAAO,6LAAA,CAAA,eAAY,CAAC,IAAI;AAC1B;AAGO,MAAM,SAAS;IACpB,SAAS;QAAC;KAAoB;AAChC"}}]
+}

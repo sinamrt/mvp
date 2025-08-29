@@ -60,7 +60,10 @@ export const authOptions: NextAuthOptions = {
       // Debug logging (remove after debugging)
       console.log('Session callback - token:', JSON.stringify(token, null, 2));
       console.log('Session callback - session before:', JSON.stringify(session, null, 2));
-      
+      console.log(
+        "[NextAuth] NEXTAUTH_SECRET present?",
+        !!process.env.NEXTAUTH_SECRET
+      );
       try {
         // Add userId and role to session - now with proper typing
         if (token?.userId) {
@@ -75,6 +78,9 @@ export const authOptions: NextAuthOptions = {
         
         console.log('Session callback - session after:', JSON.stringify(session, null, 2));
       } catch (error) {
+        console.log('NEXTAUTH_URL =', process.env.NEXTAUTH_URL);
+        console.log('Google redirect URI =', `${process.env.NEXTAUTH_URL}/api/auth/callback/google`);
+
         console.error('Session callback error:', error);
       }
       
