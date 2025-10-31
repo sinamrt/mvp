@@ -216,3 +216,30 @@ enum GoalMode {
   GENERAL
   EXACT
 }
+
+model RecResult {
+  userId    String   @id
+  items     Json
+  modelVer  String   @default("v0.1-rules")
+  updatedAt DateTime @default(now())
+
+  @@index([updatedAt, modelVer(sort: Asc)])
+}
+
+enum JobStatus {
+  success
+  failed
+  running
+}
+
+model JobRun {
+  id          String    @id @default(cuid())
+  jobName     String
+  startedAt   DateTime  @default(now())
+  finishedAt  DateTime?
+  status      JobStatus
+  rowsWritten Int       @default(0)
+  details     Json?
+
+  @@index([jobName, startedAt(sort: Desc)])
+}
