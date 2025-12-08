@@ -1,123 +1,40 @@
-import { PrismaClient, DietType, AllergenType } from '@prisma/client'
-
-const prisma = new PrismaClient()
+// prisma/seed.ts
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+  
+prisma.userProgress
 
 async function main() {
-  console.log('🌱 Starting database seeding...')
+  // If you added a UNIQUE on Meal.name, use createMany + skipDuplicates.
+  await prisma.meal.createMany({
+    data: [
+      { name: 'Grilled Chicken Salad', calories: 350, protein: 40, carbs: 12, fat: 10, tags: ['high-protein','gluten-free'] },
+      { name: 'Tofu Stir-fry',         calories: 420, protein: 28, carbs: 45, fat: 12, tags: ['vegan'] },
+      { name: 'Oats & Berries',        calories: 310, protein: 10, carbs: 55, fat: 6,  tags: ['breakfast'] },
+      { name: 'Salmon & Quinoa',       calories: 480, protein: 36, carbs: 34, fat: 18, tags: ['omega-3'] },
+      { name: 'Greek Yogurt Bowl',     calories: 260, protein: 22, carbs: 28, fat: 6,  tags: ['snack','breakfast'] },
+      { name: 'Veggie Omelette',       calories: 290, protein: 21, carbs: 8,  fat: 18, tags: ['low-carb'] },
+      { name: 'Lentil Soup',           calories: 360, protein: 22, carbs: 48, fat: 6,  tags: ['vegetarian'] },
+      { name: 'Beef & Brown Rice',     calories: 560, protein: 38, carbs: 58, fat: 16, tags: ['lunch'] },
+      { name: 'Chicken Wrap',          calories: 430, protein: 32, carbs: 42, fat: 14, tags: ['lunch'] },
+      { name: 'Tuna Salad',            calories: 320, protein: 34, carbs: 6,  fat: 14, tags: ['low-carb'] },
+      { name: 'Chickpea Buddha Bowl',  calories: 500, protein: 22, carbs: 70, fat: 14, tags: ['vegan'] },
+      { name: 'Turkey Chili',          calories: 520, protein: 40, carbs: 48, fat: 16, tags: ['high-protein'] },
+      { name: 'Avocado Toast',         calories: 350, protein: 10, carbs: 38, fat: 18, tags: ['breakfast','vegetarian'] },
+      { name: 'Poke Bowl',             calories: 540, protein: 36, carbs: 62, fat: 14, tags: ['fish'] },
+      { name: 'Shrimp Pasta',          calories: 580, protein: 32, carbs: 72, fat: 16, tags: ['dinner'] },
+      { name: 'Quinoa Salad',          calories: 420, protein: 16, carbs: 58, fat: 12, tags: ['vegetarian'] },
+      { name: 'Egg & Spinach Wrap',    calories: 320, protein: 21, carbs: 30, fat: 12, tags: ['breakfast'] },
+      { name: 'Cottage Cheese Bowl',   calories: 260, protein: 24, carbs: 16, fat: 8,  tags: ['snack'] },
+      { name: 'Tofu Buddha Bowl',      calories: 510, protein: 26, carbs: 68, fat: 16, tags: ['vegan'] },
+      { name: 'Chicken & Sweet Potato',calories: 520, protein: 38, carbs: 52, fat: 14, tags: ['dinner'] },
+    ],
+    skipDuplicates: true, // requires a UNIQUE index (see note below)
+  });
 
-  // Seed diet exclusions
-  const dietExclusions = [
-    // Keto exclusions
-    { dietType: DietType.KETO, excludedFood: 'High-carb Grains' },
-    { dietType: DietType.KETO, excludedFood: 'Refined Starches' },
-    { dietType: DietType.KETO, excludedFood: 'Sugar' },
-    
-    // Mediterranean exclusions
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Fruit juice' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Processed Meats' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Refined Starches' },
-    { dietType: DietType.MEDITERRANEAN, excludedFood: 'Sugar' },
-    
-    // Paleo exclusions
-    { dietType: DietType.PALEO, excludedFood: 'Dairy' },
-    { dietType: DietType.PALEO, excludedFood: 'Grains' },
-    { dietType: DietType.PALEO, excludedFood: 'Legumes' },
-    { dietType: DietType.PALEO, excludedFood: 'Refined Starches' },
-    { dietType: DietType.PALEO, excludedFood: 'Soy' },
-    { dietType: DietType.PALEO, excludedFood: 'Sugar' },
-    
-    // Vegan exclusions
-    { dietType: DietType.VEGAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.VEGAN, excludedFood: 'Poultry' },
-    { dietType: DietType.VEGAN, excludedFood: 'Fish' },
-    { dietType: DietType.VEGAN, excludedFood: 'Shellfish' },
-    { dietType: DietType.VEGAN, excludedFood: 'Dairy' },
-    { dietType: DietType.VEGAN, excludedFood: 'Eggs' },
-    { dietType: DietType.VEGAN, excludedFood: 'Mayo' },
-    { dietType: DietType.VEGAN, excludedFood: 'Honey' },
-    
-    // Vegetarian exclusions
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Red Meat' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Poultry' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Fish' },
-    { dietType: DietType.VEGETARIAN, excludedFood: 'Shellfish' },
-  ]
-
-  console.log('📝 Creating diet exclusions...')
-  for (const exclusion of dietExclusions) {
-    await prisma.dietExclusion.upsert({
-      where: {
-        id: `${exclusion.dietType}-${exclusion.excludedFood}`,
-      },
-      update: {},
-      create: {
-        id: `${exclusion.dietType}-${exclusion.excludedFood}`,
-        ...exclusion,
-      },
-    })
-  }
-
-  // Create a default admin user
-  console.log('👤 Creating default admin user...')
-  const adminUser = await prisma.user.upsert({
-    where: { email: 'admin@dietapp.com' },
-    update: {},
-    create: {
-      email: 'admin@dietapp.com',
-      name: 'Admin User',
-      role: 'ADMIN',
-      dietPreferences: {
-        create: {
-          dietType: DietType.ANYTHING,
-          measurementUnit: 'US_STANDARD',
-          energyUnit: 'CALORIES',
-        },
-      },
-      nutritionGoals: {
-        create: {
-          goalType: 'MAINTAIN',
-          goalMode: 'GENERAL',
-        },
-      },
-      macroRanges: {
-        create: {
-          carbsMin: 48,
-          carbsMax: 272,
-          fatsMin: 90,
-          fatsMax: 121,
-          proteinMin: 80,
-          proteinMax: 272,
-        },
-      },
-      mealPreferences: {
-        create: {
-          breakfast: true,
-          lunch: true,
-          dinner: true,
-          snack: true,
-          favoriteDishes: ['Salad', 'Grilled Chicken', 'Quinoa'],
-        },
-      },
-      nutritionLimits: {
-        create: {
-          minFiber: 25,
-          limitSodium: false,
-          limitCholesterol: false,
-        },
-      },
-    },
-  })
-
-  console.log('✅ Database seeding completed!')
-  console.log(`Admin user created: ${adminUser.email}`)
+  console.log('✅ Seeded meals');
 }
 
 main()
-  .catch((e) => {
-    console.error('❌ Error during seeding:', e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  }) 
+  .catch((e) => { console.error(e); process.exit(1); })
+  .finally(async () => { await prisma.$disconnect(); });

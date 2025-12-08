@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"pages/admin.tsx -> ../components/AdminOnly":{"id":411,"files":["static/chunks/411.9ce6226d45c4e264.js"]},"pages/diet-form.tsx -> ../components/DietFormClient":{"id":8701,"files":["static/chunks/701.1ea6aa27c50f2351.js"]}}';

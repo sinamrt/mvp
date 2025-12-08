@@ -1,5 +1,5 @@
 // #import styles from '../styles/Home.module.css';
-import styles from './pages/index.module.css';
+import styles from '../styles/Home.module.css';
 
 const HomePage = () => {
   return (
@@ -56,7 +56,7 @@ const HomePage = () => {
             fontWeight: 500 
           }}
         >
-          "Eat the rainbow – your mood thrives on colorful meals!"
+          &quot;Eat the rainbow – your mood thrives on colorful meals!&quot;
         </p>
       </div>
 
@@ -64,7 +64,7 @@ const HomePage = () => {
       <div className="card" style={{ position: 'relative' }}>
         <div className="card-header">
           <div>
-            <div className="card-title">🍽️ Today's Meal Plan</div>
+            <div className="card-title">🍽️ Today&apos;s Meal Plan</div>
             <div className="card-subtitle">Your personalized daily nutrition schedule</div>
           </div>
           <button className="btn btn-outline btn-sm" id="customize-plan-btn">Customize</button>

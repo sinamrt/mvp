@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     return res.status(201).json({ user });
-  } catch (err) {
-    return res.status(500).json({ error: 'Server error' });
+  } catch (err: unknown) {
+    return res.status(500).json({ error: String((err as Error).message) });
   }
 }

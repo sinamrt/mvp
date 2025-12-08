@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
@@ -25,12 +26,43 @@ model User {
   dietPreferences DietPreference?
   foodExclusions  FoodExclusion[]
   macroRanges     MacroRange?
+  meals           Meal[] // back-relation
+
   mealPreferences MealPreference?
   nutritionGoals  NutritionGoal?
   nutritionLimits NutritionLimit?
   userProgress    UserProgress[]
 
   @@map("users")
+}
+
+model Meal {
+  id            Int      @id @default(autoincrement())
+  userId        String // ← Change to String
+  mealType      String
+  mealTime      DateTime
+  totalCalories Float?
+  totalProtein  Float?
+  totalCarbs    Float?
+  totalFat      Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user           User            @relation(fields: [userId], references: [id])
+  components     MealComponent[]
+  foodExclusions FoodExclusion[] @relation("MealToFoodExclusions") // ← Add this
+
+  @@map("meals")
+}
+
+model MealComponent {
+  id       Int    @id @default(autoincrement())
+  mealId   Int
+  foodName String
+  quantity Float
+  meal     Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("meal_components")
 }
 
 model DietPreference {
@@ -47,12 +79,15 @@ model DietPreference {
 }
 
 model FoodExclusion {
-  id           String       @id @default(cuid())
-  userId       String
-  allergenType AllergenType
-  customFood   String?
-  createdAt    DateTime     @default(now())
-  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  userId    String
+  foodName  String
+  reason    String?
+  createdAt DateTime @default(now())
+  mealId    Int? // ← Change to Int (to match Meal.id)
+
+  user User  @relation(fields: [userId], references: [id])
+  meal Meal? @relation("MealToFoodExclusions", fields: [mealId], references: [id])
 
   @@map("food_exclusions")
 }
