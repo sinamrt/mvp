@@ -1,21 +1,34 @@
-export async function recomputeRecs(userId?: string) {
-  const lockKey = 'recompute-lock';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { z } from 'zod';
+import { recomputeRecs } from '@/lib/jobs/recomputeRecs';
 
-  await withDistributedLock(lockKey, async () => {
-    const job = await prisma.jobRun.create({
-      data: { startedAt: new Date(), userId }
-    });
+const RequestSchema = z.object({
+  userId: z.string().uuid().optional(),
+});
 
-    const usersProcessed = await doRecompute(userId);
-    
-    await prisma.jobRun.update({
-      where: { id: job.id },
-      data: { finishedAt: new Date(), usersProcessed }
-    });
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method Not Allowed' });
+    }
 
-    // ✅ do NOT return any value here
-  });
+    const session = await getServerSession(req, res, authOptions);
+    if (!session?.user || session.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
 
-  // return summary outside the lock
-  return { ok: true, usersProcessed: 5, rowsWritten: 5, jobId: 'abc' };
+    const parsed = RequestSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: parsed.error.flatten() });
+    }
+
+    const result = await recomputeRecs({ targetUserId: parsed.data.userId });
+
+    return res.status(202).json(result);
+  } catch (err: any) {
+    console.error('Error in recompute-recs handler:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 }
