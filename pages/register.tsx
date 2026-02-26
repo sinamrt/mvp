@@ -1,3 +1,4 @@
+import React from 'react';
 // pages/register.tsx
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
@@ -138,3 +139,7 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  return { props: {} };
+};

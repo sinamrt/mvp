@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import Head from 'next/head';
@@ -52,3 +53,7 @@ export default function LoginPage() {
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  return { props: {} };
+};

@@ -1,35 +1,24 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+const ERROR_MESSAGES: Record<string, string> = {
+  CredentialsSignin: 'Invalid email or password',
+  EmailExists:       'Email already exists',
+  WeakPassword:      'Password is too weak',
+  RequiredFields:    'All fields are required',
+  NetworkError:      'Network error occurred',
+};
+
 export default function AuthError() {
-  const router = useRouter();
-  const { error } = router.query;
+  const router     = useRouter();
+  const errorCode  = router.isReady ? (router.query.error as string) : '';
+  const message    = ERROR_MESSAGES[errorCode] ?? 'An error occurred during authentication';
 
   useEffect(() => {
-    // For test purposes, expose error message in data-testid
-    const errorElement = document.querySelector('[data-testid="error-message"]');
-    if (errorElement) {
-      errorElement.textContent = getErrorMessage(error as string);
-    }
-  }, [error]);
-
-  const getErrorMessage = (errorCode: string): string => {
-    switch (errorCode) {
-      case 'CredentialsSignin':
-        return 'Invalid email or password';
-      case 'EmailExists':
-        return 'Email already exists';
-      case 'WeakPassword':
-        return 'Password is too weak';
-      case 'RequiredFields':
-        return 'All fields are required';
-      case 'NetworkError':
-        return 'Network error occurred';
-      default:
-        return 'An error occurred during authentication';
-    }
-  };
+    const el = document.querySelector('[data-testid="error-message"]');
+    if (el) el.textContent = message;
+  }, [message]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -39,7 +28,7 @@ export default function AuthError() {
             Authentication Error
           </h2>
           <p className="mt-2 text-sm text-gray-600" data-testid="error-message">
-            {getErrorMessage(error as string)}
+            {message}
           </p>
         </div>
         <div className="mt-4 text-center">
@@ -50,4 +39,8 @@ export default function AuthError() {
       </div>
     </div>
   );
-} 
+}
+
+export const getServerSideProps = async () => {
+  return { props: {} };
+};

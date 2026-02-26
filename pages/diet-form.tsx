@@ -1,3 +1,4 @@
+import React from 'react';
 import dynamic from "next/dynamic";
 
 // Create a client-only version of the diet form

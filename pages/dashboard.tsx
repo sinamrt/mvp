@@ -1,3 +1,4 @@
+import React from 'react';
 // pages/dashboard.tsx
 import type { NextRequest } from 'next/server';
 // pages/dashboard.tsx
@@ -37,3 +38,7 @@ export default function DashboardPage() {
   );
 }
 
+
+export const getServerSideProps = async () => {
+  return { props: {} };
+};
